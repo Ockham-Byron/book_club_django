@@ -1,0 +1,60 @@
+from uuid import uuid4
+import os
+from django.utils.text import slugify
+from django.contrib.auth.models import AbstractUser
+from PIL import Image
+from django.db import models
+
+#function to rename avatar file on upload
+def path_and_rename(instance, filename):
+    upload_to = 'users_pictures'
+    ext = filename.split('.')[-1]
+    # get filename
+    if instance.pk:
+        filename = '{}-{}.{}'.format(instance.username, instance.pk, ext)
+    else:
+        # set filename as random string
+        filename = '{}-{}.{}'.format(uuid4().hex, ext)
+    # return the whole path to the file
+    return os.path.join(upload_to, filename)
+
+class CustomUser(AbstractUser):
+    AVATAR = (
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+        ('6', '6'),
+        ('7', '7'),
+        ('8', '8'),
+        ('9', '9'),
+    )
+    id = models.UUIDField(default = uuid4, editable = False, primary_key=True)
+    email = models.EmailField(unique=True)
+    avatar = models.CharField(max_length=255, choices=AVATAR, default='1')
+    profile_pic = models.ImageField(blank=True, null=True, upload_to=path_and_rename)
+    is_rgpd = models.BooleanField(default=False)
+    slug = models.SlugField(max_length=255, unique= True, default=None, null=True)
+
+    def __str__(self):
+        return self.username
+
+    
+    def save(self, *args, **kwargs):
+        super().save()
+        # resizing images
+        if self.profile_pic:
+            img = Image.open(self.profile_pic.path)
+
+            if img.height > 100 or img.width > 100:
+                new_img = (100, 100)
+                img.thumbnail(new_img)
+                img.save(self.profile_pic.path)
+        else:
+            pass
+        # create slug
+        if not self.slug:
+            self.slug = slugify(self.username + '_' + str(self.id))
+        super(CustomUser, self).save(*args, **kwargs)
+    

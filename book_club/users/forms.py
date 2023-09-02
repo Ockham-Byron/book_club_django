@@ -3,14 +3,6 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import get_user_model
 from .models import CustomUser
 
-class CustomAuthenticationForm(AuthenticationForm):
-    email = forms.EmailField(widget=forms.TextInput(attrs={'autofocus': True}))
-
-class CustomUserCreationForm(UserCreationForm):
-    email = forms.EmailField(required=True)
-    class Meta:
-        model = CustomUser
-        fields = ('email', 'password1', 'password2')
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField(help_text='A valid email address, please.', required=True)
@@ -25,3 +17,21 @@ class UserRegistrationForm(UserCreationForm):
         if commit:
             user.save()
         return user
+    
+class UserLoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(UserLoginForm, self).__init__(*args, **kwargs)
+
+    username = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Email'}),
+        label="Email*")
+
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'placeholder': 'Password'}))
+    
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = get_user_model()
+        fields = ['first_name', 'last_name', 'email']

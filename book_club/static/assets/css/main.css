@@ -1,0 +1,52 @@
+/* || Variables */
+
+/* Colors */   
+:root {
+    --brand-color: #F8B55C;
+    --darkest-color: #1A262F;
+    --dark-color: #BA7333;
+    --mid-color: #A89479;
+    --light-color: #D7D4CF;
+    --lightest-color: #FFFFFF;
+      }
+  
+/* Fonts */
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url("../fonts/OpenDyslexic-Bold.otf");
+}
+
+  @font-face {
+    font-family: 'Poppins';
+    src: url("../fonts/poppins/Poppins-Regular.otf");
+  }
+
+  @font-face {
+    font-family: 'Droid-Serif';
+    src: url("../fonts/droid-serif.regular.ttf");
+  }
+
+
+/* || General styles */
+
+body {
+  background-color: var(--light-color);
+}
+/* … */
+
+/* || Typography */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'OpenDyslexic';
+}
+
+/* … */
+
+/* || Header and Main Navigation */
+
+.navbar a {
+  color: var(--dark-color);
+}
+
+/* … */

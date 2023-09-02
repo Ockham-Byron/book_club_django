@@ -11,6 +11,7 @@
      
     <!-- Custom Css Files-->
     <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/forms.css' %}">
     
 
     <!--Font awesome icons -->
@@ -37,6 +38,8 @@
      
         {% block content %}{% endblock %}
         </div>
+
+         {% include 'users/includes/footer.html' %}
 
        
 

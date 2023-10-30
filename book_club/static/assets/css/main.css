@@ -50,3 +50,32 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* … */
+
+/* || Language selector */
+
+
+#language_select {
+  padding:10px 50px;
+}
+
+.language--select {
+border:none;
+background:transparent !important;
+color:var(--light-color) !important;
+}
+
+.btn-transparent {
+  background: transparent !important;
+}
+
+.dropdown-toggle::after{
+  border-top-color: var(--light-color)!important;
+}
+
+@media only screen and (max-width: 600px) {
+  #language_select {
+    padding:20px 0px;
+    }
+}
+
+/* … */

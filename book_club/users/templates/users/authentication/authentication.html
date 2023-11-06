@@ -1,0 +1,88 @@
+{% extends 'users/base.html' %}
+{% load i18n crispy_forms_tags %}
+{% block content %}
+<div class="container-fluid text-center">
+  <h1 class="brand-color text-center mt-2">{% trans 'Book Club' %}</h1>
+  <!-- Start auth wrapper -->
+  <div class="auth-wrapper mt-3 mx-auto" style="height:430px;">
+    
+    <div class="form-container">
+      <div class="slide-controls">
+        <input type="radio" name="slide" id="login" checked>
+        <input type="radio" name="slide" id="signup">
+        <label for="login" class="slide login">{% trans 'Login' %}</label>
+        <label for="signup" class="slide signup">{% trans 'Signup' %}</label>
+        <div class="slider-tab">
+      </div>
+    </div>
+
+    <div class="form-inner mt-5">
+      <!-- Start Login form-->
+      <form class="login" method="post">
+
+        {% csrf_token %}
+        
+        {{ login_form|crispy }}
+        
+        <div class="pass-link">
+          <a href="#">{% trans 'Forgot password?' %}</a>
+        </div>
+        <div class="field btn">
+          <div class="btn-layer"></div>
+          <input name="login_form" type="submit" value="{% trans 'Login' %}">
+        </div>
+        <div class="signup-link">
+          {% trans 'Not a member?' %} <a href="">{% trans 'Signup now' %}</a>
+        </div>
+      </form>
+      <!-- End Login Form -->
+
+      <!-- Start Signup Form-->
+      <form  class="signup" method="post">
+      {% csrf_token %}
+        {{ register_form|crispy }}
+        <div class="field btn">
+          <div class="btn-layer btn-signup"></div>
+          <input name="register_form" type="submit" value="{% trans 'Signup' %}">
+        </div>
+      </form>
+      <!-- End Signup Form-->
+    </div>
+  </div>
+  <!-- End auth wrapper -->
+
+
+  <section class="login-register d-none">
+        <div class="book-register">
+            <div class="page-book-register page-login">HTML</div>
+            <div class="page-book-register page-register">CSS</div>
+        </div>
+  </section>
+
+</div>
+{% endblock %}
+{% block extrajs %}
+<script>
+      const wrapper = document.querySelector(".auth-wrapper");
+      const loginForm = document.querySelector("form.login");
+      const loginBtn = document.querySelector("label.login");
+      const signupBtn = document.querySelector("label.signup");
+      const signupLink = document.querySelector("form .signup-link a");
+      signupBtn.onclick = (()=>{
+        loginForm.style.marginLeft = "-50%";
+        wrapper.style.backgroundColor = "var(--dark-color)";
+        wrapper.style.height = "100%";
+        
+      });
+      loginBtn.onclick = (()=>{
+        loginForm.style.marginLeft = "0%";
+        wrapper.style.backgroundColor = "var(--brand-color)";
+        wrapper.style.height = "430px";
+      });
+      signupLink.onclick = (()=>{
+        signupBtn.click();
+        return false;
+      });
+    </script>
+
+{%endblock%}

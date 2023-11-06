@@ -1,7 +1,10 @@
+from django.utils.translation import gettext as _
+from django.contrib.auth import get_user_model, login, logout, authenticate
+from django.core.exceptions import ValidationError
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import get_user_model
-from .models import CustomUser
+
 
 
 class UserRegistrationForm(UserCreationForm):
@@ -22,12 +25,14 @@ class UserLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(UserLoginForm, self).__init__(*args, **kwargs)
 
-    username = forms.CharField(widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': 'Email'}),
-        label="Email*")
+    username = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': _('Email')}),)
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': _('Password')}))
 
-    password = forms.CharField(widget=forms.PasswordInput(
-        attrs={'class': 'form-control', 'placeholder': 'Password'}))
+    # def clean(self):
+    #     username = self.cleaned_data['username']
+    #     password = self.cleaned_data['password']
+    #     user = authenticate(username = username, password=password)
+
     
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()

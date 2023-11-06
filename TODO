@@ -4,7 +4,10 @@ Internationalization:
   ☐ style language switch
 
 Authentication:
-  ☐ Item
+  ✔ vérifier que le mail existe @done(23-11-06 11:12)
+  ✔ verifier que le mot de passe est bon @done(23-11-06 11:12)
+  ☐ form signup : ajouter les placeholders
+  ☐ gérer les messages globaux
 
 General:
   ☐ favicon

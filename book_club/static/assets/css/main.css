@@ -2,13 +2,18 @@
 
 /* Colors */   
 :root {
-    --brand-color: #F8B55C;
+    --brand-color: #93aec1;
     --darkest-color: #1A262F;
-    --dark-color: #BA7333;
-    --mid-color: #A89479;
-    --light-color: #D7D4CF;
-    --lightest-color: #FFFFFF;
+    --dark-color: #9dbdba;
+    --mid-color: #f8b042;
+    --light-color: #ec6a52;
+    --joy-color: #f3b7ad;
+    --lightest-color: #f0eae0;
       }
+
+
+
+    
   
 /* Fonts */
 
@@ -31,8 +36,23 @@
 /* || General styles */
 
 body {
-  background-color: var(--light-color);
+  background-color: var(--lightest-color);
+  font-family: 'Poppins';
 }
+
+@media only screen and (max-width:767px) {
+  body {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+  }
+
+  .container {
+    padding-left:0px !important;
+    padding-right:0px !important;
+  }
+}
+  
+
 /* … */
 
 /* || Typography */
@@ -41,7 +61,44 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'OpenDyslexic';
 }
 
-/* … */
+
+
+.brand-color {
+  color: var(--brand-color);
+}
+
+.dark-color {
+  color: var(--dark-color);
+}
+
+.darkest-color {
+  color: var(--darkest-color);
+}
+
+.joy-color {
+  color: var(--joy-color);
+}
+
+.mid-color {
+  color: var(--mid-color);
+}
+
+.light-color {
+  color: var(--light-color);
+}
+
+.lighest-color {
+  color: var(--lightest-color);
+}
+
+/* Responsive */
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 2rem !important ;
+  }
+}
+  
+
 
 /* || Header and Main Navigation */
 

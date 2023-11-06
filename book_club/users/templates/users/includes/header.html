@@ -24,12 +24,10 @@
                             Log out <i class="fas fa-sign-out-alt"></i>
                         </a>
                     {% else %}
-                        <a class="nav-item nav-link" href="{% url 'login' %}">
+                        <a class="nav-item nav-link" href="{% url 'authentication' %}">
                             Log in <i class="fas fa-sign-in-alt"></i>
                         </a>
-                        <a class="nav-item nav-link" href="{% url 'register' %}">
-                            Sign up <i class="fas fa-user-plus"></i>
-                        </a>
+                        
                     {% endif %}
                     {% include 'users/includes/langswitch.html' %}
                 </div>

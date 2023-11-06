@@ -1,14 +1,25 @@
 
 Internationalization:
   ✔ install @done(23-10-30 15:35)
-  ☐ style language switch
+  ✔ style language switch @done(23-11-06 16:45)
 
 Authentication:
   ✔ vérifier que le mail existe @done(23-11-06 11:12)
   ✔ verifier que le mot de passe est bon @done(23-11-06 11:12)
-  ☐ form signup : ajouter les placeholders
+  ✔ faire page login @done(23-11-06 16:14)
+  ✔ faire page register @done(23-11-06 16:45)
+  ✔ form signup : ajouter les placeholders @done(23-11-06 16:49)
+  ☐ faire logique envoi email
+  ☐ mise en page erreurs par champ
   ☐ gérer les messages globaux
+  ☐ gérer oubli password
+  ☐ permettre de voir le mot de passe
+  ☐ add logique remember me
+  ☐ refaire toutes les traductions
+  ✔ RGPD logic dans register @done(23-11-06 16:45)
+  ☐ traduire messages send email
 
 General:
   ☐ favicon
+  ☐ hamburger icon
 

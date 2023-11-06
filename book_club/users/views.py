@@ -15,7 +15,7 @@ from .tokens import account_activation_token
 
 def activateEmail(request, user, to_email):
     mail_subject = 'Activate your user account.'
-    message = render_to_string('template_activate_account.html', {
+    message = render_to_string('users/authentication/emails/verification_account_email.html', {
         'user': user.username,
         'domain': get_current_site(request).domain,
         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
@@ -41,6 +41,7 @@ def auth_view(request):
     
     login_form = UserLoginForm(request.POST)
     register_form = UserRegistrationForm(request.POST)
+    is_valid = False # add boolean validation for javascript animation
 
     if request.method == 'POST':
         if 'login_form' in request.POST:
@@ -53,8 +54,9 @@ def auth_view(request):
                 )
                 if user is not None:
                     print("user reconnu")
+                    is_valid = True
                     login(request, user)
-                    message = _('Hello %(username) ! You have been logged in !.') % {'username':user.username}
+                    message = _('Hello %(username)s ! You have been logged in.') % {'username':user.username}
                     messages.success(request, message)
                     return redirect('home')
 
@@ -63,19 +65,20 @@ def auth_view(request):
                         messages.error(request, error)
             else:
                 print("pas valide")
-                if get_user_model().objects.filter(email = login_form.cleaned_data['username']).exists():
-                    print("pas bon mot de passe")
-                    message = _("This isn't the password connected with this %(email)") % {'email':login_form.cleaned_data['username']}
-                    raise ValidationError(request, message)
-                else:
-                    print("pas usernames")
-                    message = _("No user registered with this %(email)...") % {'email':login_form.cleaned_data['username']}
-                    messages.error(request, message)
+                # if get_user_model().objects.filter(email = login_form.cleaned_data['username']).exists():
+                #     print("pas bon mot de passe")
+                #     message = _("This isn't the password connected with this %(email)") % {'email':login_form.cleaned_data['username']}
+                    
+                # else:
+                #     print("pas usernames")
+                #     message = _("No user registered with this %(email)...") % {'email':login_form.cleaned_data['username']}
+                #     messages.error(request, message)
                     
 
         if 'register_form' in request.POST:
             register_form = UserRegistrationForm(request.POST)
             if register_form.is_valid():
+                print("valide")
                 user = register_form.save(commit=False)
                 user.is_active = False
                 user.save()
@@ -90,12 +93,79 @@ def auth_view(request):
     context = {
         'login_form': login_form,
         'register_form': register_form,
+        'is_valid': is_valid,
     }
 
     return render(request, 'users/authentication/authentication.html', context=context)
 
 
+def login_view(request):
+    # Logged in user can't register a new account
+    if request.user.is_authenticated:
+        return redirect("/")
+    
+    login_form = UserLoginForm(request.POST)
+    
 
+    if request.method == 'POST':
+            login_form = UserLoginForm(request=request, data=request.POST)
+            if login_form.is_valid():
+                user = authenticate(
+                    username=login_form.cleaned_data['username'],
+                    password=login_form.cleaned_data['password'],
+                )
+                if user is not None:
+                    login(request, user)
+                    message = _('Hello %(username)s ! You have been logged in.') % {'username':user.username}
+                    messages.success(request, message)
+                    return redirect('home')
+
+                else:
+                    for error in list(login_form.errors.values()):
+                        messages.error(request, error)
+            else:
+                print("pas valide")
+                
+                    
+
+       
+
+    context = {
+        'login_form': login_form,
+       
+    }
+
+    return render(request, 'users/authentication/login.html', context=context)
+
+
+def register_view(request):
+    # Logged in user can't register a new account
+    if request.user.is_authenticated:
+        return redirect("/")
+    
+    register_form = UserRegistrationForm(request.POST)
+    
+
+    if request.method == 'POST':
+        register_form = UserRegistrationForm(request.POST)
+        if register_form.is_valid():
+            user = register_form.save(commit=False)
+            user.is_active = False
+            user.save()
+            activateEmail(request, user, register_form.cleaned_data.get('email'))
+            return redirect('/')
+        else:
+            for error in list(register_form.errors.values()):
+                print(request, error)
+    
+    else:
+        register_form = UserRegistrationForm()
+
+    context = {
+        'register_form': register_form,
+    }
+
+    return render(request, 'users/authentication/register.html', context=context)
 @login_required
 def custom_logout(request):
     logout(request)

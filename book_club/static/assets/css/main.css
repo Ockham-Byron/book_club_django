@@ -5,8 +5,8 @@
     --brand-color: #93aec1;
     --darkest-color: #1A262F;
     --dark-color: #9dbdba;
-    --mid-color: #f8b042;
-    --light-color: #ec6a52;
+    --mid-color:  #ec6a52;
+    --light-color:#f8b042 ;
     --joy-color: #f3b7ad;
     --lightest-color: #f0eae0;
       }
@@ -36,7 +36,6 @@
 /* || General styles */
 
 body {
-  background-color: var(--lightest-color);
   font-family: 'Poppins';
 }
 
@@ -61,11 +60,17 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'OpenDyslexic';
 }
 
+a:hover{
+  text-decoration: none;
+}
 
 
-.brand-color {
+
+.brand-color, a.mid-color:hover {
   color: var(--brand-color);
 }
+
+
 
 .dark-color {
   color: var(--dark-color);
@@ -79,7 +84,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--joy-color);
 }
 
-.mid-color {
+.mid-color, a.brand-color:hover {
   color: var(--mid-color);
 }
 
@@ -136,3 +141,19 @@ color:var(--light-color) !important;
 }
 
 /* … */
+
+/* || Buttons */
+
+.btn-wide {
+  width: 90%;
+  padding:8px 20px;
+}
+
+.btn-brand-color {
+  background-color: var(--brand-color);
+}
+
+.btn-brand-color:hover {
+  color:black;
+  background-color: var(--mid-color);
+}

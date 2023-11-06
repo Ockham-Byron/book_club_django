@@ -1,24 +1,87 @@
-{% extends "users/base.html" %}
-{% load crispy_forms_tags %}
+{% extends 'users/base.html' %}
+{% load static i18n %}
 {% block content %}
-    <div class="content-section">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Join Today</legend>
-                {{ form|crispy }}
-            </fieldset>
-
-            By registering, you accept the Terms of Service and Privacy Notice
-
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+<div class="container-fluid text-center">
+    <div class="auth-wrapper mx-auto">
+        <!-- Intro Start -->
+        <div>
+            <div class="text-center">
+                <img  src="{% static 'assets/img/illustrations/support.svg' %}" style="height:100px;"/>
             </div>
-        </form>
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                Already Have An Account? <a class="ml-2" href="/login">Sign In</a>
-            </small>
+            <h1 class="brand-color text-center mt-2">{% trans 'Get Started' %}</h1>
+            <p>{% trans 'by creating a free account' %}</p>
+        </div>
+        <!-- Intro End -->
+    
+        <!-- Form Start -->
+        <div class="form-container">
+            {% if register_form.non_field_errors %}
+                <ul class='form-errors'>
+                    {% for error in register_form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+      
+            <form method="post" id="registerForm">
+                {% csrf_token %}
+                <div class="input-group">
+                    {{register_form.email}}
+                    <span class="input-group-append bg-white border-left-0">
+                        <span class="input-group-text bg-transparent">
+                            @
+                        </span>
+                    </span>
+                </div>
+
+                <div class="input-group">
+                    {{register_form.username}}
+                    <span class="input-group-append bg-white border-left-0">
+                        <span class="input-group-text bg-transparent">
+                            <i class="fa-regular fa-user"></i>
+                        </span>
+                    </span>
+                </div>
+
+                <div class="input-group">
+                    {{register_form.password1}}
+                    <span class="input-group-append bg-white border-left-0">
+                        <span class="input-group-text bg-transparent">
+                            <i class="fa-regular fa-eye"></i>
+                        </span>
+                    </span>
+                    {{register_form.password1.errors}}
+                </div>
+
+                <div class="input-group">
+                    {{register_form.password2}}
+                    <span class="input-group-append bg-white border-left-0">
+                        <span class="input-group-text bg-transparent">
+                            <i class="fa-regular fa-eye"></i>
+                        </span>
+                    </span>
+                    
+                </div>
+                <div class="field-error">
+                {{register_form.password2.errors}}
+                </div>
+                
+                    <div class="text-left small">{% trans 'By creating an account you agree to our'%} <a href="#" class="brand-color">{% trans 'Terms and Conditions'%}</a> {% trans 'and our ' %} <a href="#" class="brand-color">{% trans 'Privacy Policy'%}</a>.</div>
+                    
+                
+            </form>
+        </div>
+       
+        <!-- Form container End -->
+        
+        <!-- Start buttons -->
+        <div class="pt-3 pb-3">
+            <button  class="btn btn-wide btn-brand-color" type="submit" form="registerForm" >{% trans 'Sign up' %}</button>
+            <div class="signup-link small">
+            {% trans 'Already a member?' %} <a href="{% url 'login' %}" class="mid-color">{% trans 'Log in' %}</a>
+            </div>
         </div>
     </div>
-{% endblock content %}
+  <!-- End auth wrapper -->
+</div>
+{% endblock %}

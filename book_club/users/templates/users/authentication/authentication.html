@@ -3,6 +3,13 @@
 {% block content %}
 <div class="container-fluid text-center">
   <h1 class="brand-color text-center mt-2">{% trans 'Book Club' %}</h1>
+  {% if login_form.non_field_errors %}
+    <ul class='form-errors'>
+        {% for error in login_form.non_field_errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
   <!-- Start auth wrapper -->
   <div class="auth-wrapper mt-3 mx-auto" style="height:430px;">
     
@@ -63,22 +70,29 @@
 {% endblock %}
 {% block extrajs %}
 <script>
+      console.log("coucou");
       const wrapper = document.querySelector(".auth-wrapper");
       const loginForm = document.querySelector("form.login");
       const loginBtn = document.querySelector("label.login");
       const signupBtn = document.querySelector("label.signup");
       const signupLink = document.querySelector("form .signup-link a");
+      let is_valid = {{ is_valid|yesno:"true,false" }};
       signupBtn.onclick = (()=>{
         loginForm.style.marginLeft = "-50%";
         wrapper.style.backgroundColor = "var(--dark-color)";
         wrapper.style.height = "100%";
         
       });
+      
       loginBtn.onclick = (()=>{
-        loginForm.style.marginLeft = "0%";
-        wrapper.style.backgroundColor = "var(--brand-color)";
-        wrapper.style.height = "430px";
+        
+          console.log("Login success");
+          loginForm.style.marginLeft = "0%";
+          wrapper.style.backgroundColor = "var(--brand-color)";
+          wrapper.style.height = "430px";
       });
+      
+
       signupLink.onclick = (()=>{
         signupBtn.click();
         return false;

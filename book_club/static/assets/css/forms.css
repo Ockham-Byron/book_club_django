@@ -1,5 +1,18 @@
 /* || General */
 
+input.form-control, span.input-group-text {
+ background-color: rgb(239, 239, 239) !important;
+ border:none !important;
+}
+
+input.form-control {
+  height: 50px !important;
+}
+
+.input-group {
+  margin-bottom:10px !important;
+}
+
 input::placeholder{
   color: #999;
   transition: all 0.3s ease;
@@ -17,7 +30,14 @@ input:focus::placeholder{
 /* Mobile */
 
 
-  .auth-wrapper{
+.auth-wrapper{
+  height:85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+  /* .auth-wrapper{
     overflow: hidden;
     max-width: 95%;
     background: var(--brand-color);
@@ -26,6 +46,7 @@ input:focus::placeholder{
     box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
   }
   
+
  
   .auth-wrapper .slide-controls{
     position: relative;
@@ -35,9 +56,9 @@ input:focus::placeholder{
     overflow: hidden;
     margin: 0px 0 5px 0;
     justify-content: space-between;
-    
     border-radius: 5px;
   }
+
   .slide-controls .slide{
     height: 100%;
     width: 100%;
@@ -173,7 +194,7 @@ input:focus::placeholder{
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;
-  }
+  } */
 
 
 /* Computer */
@@ -236,4 +257,18 @@ input:focus::placeholder{
     background-color: var(--mid-color);
     right: 0;
     border-radius: 0 20px 20px 0;
+}
+
+/* Alerts */
+form.login > div.alert.alert-block.alert-danger {
+  display: none !important;
+}
+ul.form-errors {
+  background-color: palevioletred;
+  color:black;
+  padding:20px 5px;
+
+}
+ul.form-errors li{
+  list-style: none;
 }

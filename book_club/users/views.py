@@ -8,95 +8,67 @@ from .forms import UserRegistrationForm, UserLoginForm, UserUpdateForm
 
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
-from django.utils.http import urlsafe_base64_encode
-from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
 from .tokens import account_activation_token
 
-def activateEmail(request, user, to_email):
-    mail_subject = 'Activate your user account.'
-    message = render_to_string('users/authentication/emails/verification_account_email.html', {
-        'user': user.username,
-        'domain': get_current_site(request).domain,
-        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-        'token': account_activation_token.make_token(user),
-        'protocol': 'https' if request.is_secure() else 'http'
-    })
-    email = EmailMessage(mail_subject, message, to=[to_email])
-    if email.send():
-        messages.success(request, f'Dear <b>{user}</b>, please go to you email <b>{to_email}</b> inbox and click on \
-            received activation link to confirm and complete the registration. <b>Note:</b> Check your spam folder.')
+User = get_user_model()
+
+# send email with verification link
+def verify_email(request):
+    if request.method == "POST":
+        if request.user.email_is_verified != True:
+            current_site = get_current_site(request)
+            user = request.user
+            email = request.user.email
+            subject = _("Verify Email")
+            message = render_to_string('users/authentication/emails/verify_email_message.html', {
+                'request': request,
+                'user': user,
+                'domain': current_site.domain,
+                'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+                'token':account_activation_token.make_token(user),
+            })
+            email = EmailMessage(
+                subject, message, to=[email]
+            )
+            email.content_subtype = 'html'
+            email.send()
+            return redirect('verify-email-done')
+        else:
+            return redirect('signup')
+    return render(request, 'users/authentication/verify_email.html')
+
+def verify_email_done(request):
+    user = request.user
+    email = user.email
+    context = {'user': user, 'email': email}
+    return render(request, 'users/authentication/verify_email_done.html', context=context)
+
+def verify_email_confirm(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.email_is_verified = True
+        user.save()
+        messages.success(request, 'Your email has been verified.')
+        return redirect('verify-email-complete')   
     else:
-        messages.error(request, f'Problem sending confirmation email to {to_email}, check if you typed it correctly.')
-...
+        messages.warning(request, 'The link is invalid.')
+    return render(request, 'users/authentication/verify_email_confirm.html')
+
+def verify_email_complete(request):
+    return render(request, 'users/authentication/verify_email_complete.html')
+
 
 # Create your views here.
 def home_view(request):
     return render(request, 'users/home.html')
 
-def auth_view(request):
-    # Logged in user can't register a new account
-    if request.user.is_authenticated:
-        return redirect("/")
-    
-    login_form = UserLoginForm(request.POST)
-    register_form = UserRegistrationForm(request.POST)
-    is_valid = False # add boolean validation for javascript animation
-
-    if request.method == 'POST':
-        if 'login_form' in request.POST:
-            print("Login form")
-            login_form = UserLoginForm(request=request, data=request.POST)
-            if login_form.is_valid():
-                user = authenticate(
-                    username=login_form.cleaned_data['username'],
-                    password=login_form.cleaned_data['password'],
-                )
-                if user is not None:
-                    print("user reconnu")
-                    is_valid = True
-                    login(request, user)
-                    message = _('Hello %(username)s ! You have been logged in.') % {'username':user.username}
-                    messages.success(request, message)
-                    return redirect('home')
-
-                else:
-                    for error in list(login_form.errors.values()):
-                        messages.error(request, error)
-            else:
-                print("pas valide")
-                # if get_user_model().objects.filter(email = login_form.cleaned_data['username']).exists():
-                #     print("pas bon mot de passe")
-                #     message = _("This isn't the password connected with this %(email)") % {'email':login_form.cleaned_data['username']}
-                    
-                # else:
-                #     print("pas usernames")
-                #     message = _("No user registered with this %(email)...") % {'email':login_form.cleaned_data['username']}
-                #     messages.error(request, message)
-                    
-
-        if 'register_form' in request.POST:
-            register_form = UserRegistrationForm(request.POST)
-            if register_form.is_valid():
-                print("valide")
-                user = register_form.save(commit=False)
-                user.is_active = False
-                user.save()
-                activateEmail(request, user, register_form.cleaned_data.get('email'))
-                return redirect('/')
-            else:
-                for error in list(register_form.errors.values()):
-                    print(request, error)
-        else:
-            register_form = UserRegistrationForm()
-
-    context = {
-        'login_form': login_form,
-        'register_form': register_form,
-        'is_valid': is_valid,
-    }
-
-    return render(request, 'users/authentication/authentication.html', context=context)
 
 
 def login_view(request):
@@ -116,6 +88,12 @@ def login_view(request):
                 )
                 if user is not None:
                     login(request, user)
+                    remember_me = login_form.cleaned_data.get('remember_me')
+                    if not remember_me:
+                        # set session expiry to 0 seconds. So it will automatically close the session after the browser is closed.
+                        request.session.set_expiry(0)
+                    # Set session as modified to force data updates/cookie to be saved.
+                    request.session.modified = True
                     message = _('Hello %(username)s ! You have been logged in.') % {'username':user.username}
                     messages.success(request, message)
                     return redirect('home')
@@ -150,10 +128,12 @@ def register_view(request):
         register_form = UserRegistrationForm(request.POST)
         if register_form.is_valid():
             user = register_form.save(commit=False)
-            user.is_active = False
+            password = register_form.cleaned_data['password2']
+            user.set_password(password)
             user.save()
-            activateEmail(request, user, register_form.cleaned_data.get('email'))
-            return redirect('/')
+            new_user = authenticate(username=user.email, password=password)
+            login(request, new_user)
+            return redirect('verify-email')
         else:
             for error in list(register_form.errors.values()):
                 print(request, error)
@@ -186,7 +166,7 @@ def profile(request, slug):
         for error in list(form.errors.values()):
             messages.error(request, error)
 
-    user = get_user_model().objects.filter(slug=slug).first()
+    user = User.objects.filter(slug=slug).first()
     if user:
         form = UserUpdateForm(instance=user)
         return render(request, 'users/profile.html', context={'form': form})

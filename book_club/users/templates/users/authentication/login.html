@@ -34,17 +34,14 @@
                     </span>
                 </div>
 
-                <div class="input-group">
-                    {{login_form.password}}
-                    <span class="input-group-append bg-white border-left-0">
-                        <span class="input-group-text bg-transparent">
-                            <i class="fa-regular fa-eye"></i>
-                        </span>
-                    </span>
-                </div>
+                
+                {{login_form.password}}
+                {{login_form.password.errors}}
+                    
+                
 
                 <div class="row"> 
-                    <div class="col-6 text-left small">Remember</div>
+                    <div class="col-6 text-left small">{{ login_form.remember_me }} <label class="ml-1">{% trans 'Remember me' %}</label></div>
                     <div class="col-6 text-right small"><a href="#" class="brand-color">{% trans 'Forgot password?' %}</a></div>
                 </div>
             </form>

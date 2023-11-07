@@ -1,12 +1,19 @@
 from django.urls import path
-from .views import home_view, auth_view, login_view, register_view, custom_logout, profile
+from .views import *
 
 urlpatterns = [
     path('', home_view, name='home'),
-    path('authentication', auth_view, name='authentication'),
     path('login', login_view, name='login'),
     path('register', register_view, name='register'),
     path('logout', custom_logout, name='logout'),
+
+    #verify email urls
+    path('verify-email/', verify_email, name='verify-email'),
+    path('verify-email/done/', verify_email_done, name='verify-email-done'),
+    path('verify-email-confirm/<uidb64>/<token>/', verify_email_confirm, name='verify-email-confirm'),
+    path('verify-email/complete/', verify_email_complete, name='verify-email-complete'),
+
+    #profile url
     path('profile/<slug:slug>', profile, name='profile'),
     
 ] 

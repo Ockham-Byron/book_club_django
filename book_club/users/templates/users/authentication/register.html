@@ -43,28 +43,21 @@
                     </span>
                 </div>
 
-                <div class="input-group">
+                
+                
                     {{register_form.password1}}
                     <span class="input-group-append bg-white border-left-0">
-                        <span class="input-group-text bg-transparent">
-                            <i class="fa-regular fa-eye"></i>
-                        </span>
+                        
                     </span>
                     {{register_form.password1.errors}}
-                </div>
+                
 
-                <div class="input-group">
+                
                     {{register_form.password2}}
                     <span class="input-group-append bg-white border-left-0">
-                        <span class="input-group-text bg-transparent">
-                            <i class="fa-regular fa-eye"></i>
-                        </span>
                     </span>
-                    
-                </div>
-                <div class="field-error">
-                {{register_form.password2.errors}}
-                </div>
+                    {{register_form.password2.errors}}
+               
                 
                     <div class="text-left small">{% trans 'By creating an account you agree to our'%} <a href="#" class="brand-color">{% trans 'Terms and Conditions'%}</a> {% trans 'and our ' %} <a href="#" class="brand-color">{% trans 'Privacy Policy'%}</a>.</div>
                     
@@ -85,3 +78,5 @@
   <!-- End auth wrapper -->
 </div>
 {% endblock %}
+
+

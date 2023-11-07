@@ -9,15 +9,26 @@ Authentication:
   ✔ faire page login @done(23-11-06 16:14)
   ✔ faire page register @done(23-11-06 16:45)
   ✔ form signup : ajouter les placeholders @done(23-11-06 16:49)
-  ☐ faire logique envoi email
-  ☐ mise en page erreurs par champ
+  ✔ faire logique envoi email @done(23-11-07 06:36)
+  ✔ mise en page erreurs par champ @done(23-11-07 07:06)
   ☐ gérer les messages globaux
   ☐ gérer oubli password
-  ☐ permettre de voir le mot de passe
-  ☐ add logique remember me
+  ✔ permettre de voir le mot de passe @done(23-11-07 07:19)
+  ✔ add logique remember me @done(23-11-07 07:26)
   ☐ refaire toutes les traductions
-  ✔ RGPD logic dans register @done(23-11-06 16:45)
+  ☐ RGPD logic dans register
   ☐ traduire messages send email
+  ☐ redirect to dashboard
+  ☐ faire la version ordi
+  ☐ ecrire une fonction js pour changer couleur input if error
+
+Verify email:
+  ☐ template email
+  ☐ custom style pages
+  ☐ donner la possibilité de le faire plus tard
+  ☐ request new link
+
+Dashboard:
 
 General:
   ☐ favicon

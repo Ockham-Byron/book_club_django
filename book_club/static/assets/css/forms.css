@@ -1,6 +1,6 @@
 /* || General */
 
-input.form-control, span.input-group-text {
+input.form-control, span.input-group-text, .input-group-append > button {
  background-color: rgb(239, 239, 239) !important;
  border:none !important;
 }
@@ -24,6 +24,12 @@ input:focus::placeholder{
 .form-group label {
   display: none !important;
 }
+
+.input-group-append > button:hover {
+  color:var(--mid-color) !important;
+}
+
+
 
 /* || Login and Register */
 
@@ -269,6 +275,20 @@ ul.form-errors {
   padding:20px 5px;
 
 }
-ul.form-errors li{
-  list-style: none;
+ul.form-errors li, ul.errorlist li {
+  list-style: none !important;
+}
+
+ul.errorlist {
+  color:palevioletred !important;
+  font-weight: bold !important;
+}
+
+.input-invalid{
+  background-color:palevioletred !important;
+  
+}
+
+.input-invalid::placeholder{
+  color:white !important;
 }

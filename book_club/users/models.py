@@ -35,6 +35,7 @@ class CustomUser(AbstractUser):
     avatar = models.CharField(max_length=255, choices=AVATAR, default='1')
     profile_pic = models.ImageField(blank=True, null=True, upload_to=path_and_rename)
     is_rgpd = models.BooleanField(default=False)
+    email_is_verified = models.BooleanField(default=False)
     slug = models.SlugField(max_length=255, unique= True, default=None, null=True)
 
     def __str__(self):

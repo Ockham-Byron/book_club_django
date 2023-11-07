@@ -173,3 +173,6 @@ AUTHENTICATION_BACKENDS = ['users.backends.EmailBackend']
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = '/'
+
+#duration of the cookies to remember the user credentials
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 30

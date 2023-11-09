@@ -111,9 +111,10 @@ def login_view(request):
                         request.session.set_expiry(0)
                     # Set session as modified to force data updates/cookie to be saved.
                     request.session.modified = True
-                    message = _('Hello %(username)s ! You have been logged in.') % {'username':user.username}
-                    messages.success(request, message)
-                    return redirect('home')
+                    if user.email_is_verified:
+                        return redirect('dashboard')
+                    else:
+                        return redirect('verify-email')
 
                 else:
                     for error in list(login_form.errors.values()):

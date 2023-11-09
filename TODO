@@ -1,40 +1,38 @@
 
-Internationalization:
-  ✔ install @done(23-10-30 15:35)
-  ✔ style language switch @done(23-11-06 16:45)
 
 Authentication:
-  ✔ vérifier que le mail existe @done(23-11-06 11:12)
-  ✔ verifier que le mot de passe est bon @done(23-11-06 11:12)
-  ✔ faire page login @done(23-11-06 16:14)
-  ✔ faire page register @done(23-11-06 16:45)
-  ✔ form signup : ajouter les placeholders @done(23-11-06 16:49)
-  ✔ faire logique envoi email @done(23-11-07 06:36)
-  ✔ mise en page erreurs par champ @done(23-11-07 07:06)
-  ✔ faire page logout @done(23-11-09 13:19)
   ☐ gérer les messages globaux
   ☐ gérer oubli password
-  ✔ permettre de voir le mot de passe @done(23-11-07 07:19)
-  ✔ add logique remember me @done(23-11-07 07:26)
   ☐ refaire toutes les traductions
-  ☐ RGPD logic dans register
   ☐ traduire messages send email
   ☐ redirect to dashboard
-  ✔ faire la version ordi @done(23-11-09 12:28)
   ☐ ecrire une fonction js pour changer couleur input if error
   ☐ ecrire une fonction js pour verifier en temps reel password validation
-  ☐ après login, si email pas vérifié, le redemander
 
 Verify email:
-  ☐ template email
-  ✔ laisser la possibilité de changer email @done(23-11-09 15:12)
-  ☐ custom style pages
-  ✔ donner la possibilité de le faire plus tard @done(23-11-09 15:12)
   ☐ request new link
 
-Dashboard:
 
-General:
-  ☐ favicon
-  ✔ hamburger icon @done(23-11-09 11:58)
 
+Archive:
+  ✔ install @done(23-10-30 15:35) @project(Internationalization)
+  ✔ style language switch @done(23-11-06 16:45) @project(Internationalization)
+  ✔ vérifier que le mail existe @done(23-11-06 11:12) @project(Authentication)
+  ✔ verifier que le mot de passe est bon @done(23-11-06 11:12) @project(Authentication)
+  ✔ faire page login @done(23-11-06 16:14) @project(Authentication)
+  ✔ faire page register @done(23-11-06 16:45) @project(Authentication)
+  ✔ form signup : ajouter les placeholders @done(23-11-06 16:49) @project(Authentication)
+  ✔ faire logique envoi email @done(23-11-07 06:36) @project(Authentication)
+  ✔ mise en page erreurs par champ @done(23-11-07 07:06) @project(Authentication)
+  ✔ faire page logout @done(23-11-09 13:19) @project(Authentication)
+  ✔ permettre de voir le mot de passe @done(23-11-07 07:19) @project(Authentication)
+  ✔ add logique remember me @done(23-11-07 07:26) @project(Authentication)
+  ✔ RGPD logic dans register @done(23-11-09 16:00) @project(Authentication)
+  ✔ faire la version ordi @done(23-11-09 12:28) @project(Authentication)
+  ✔ après login, si email pas vérifié, le redemander @done(23-11-09 16:00) @project(Authentication)
+  ✔ template email @done(23-11-09 15:51) @project(Verify email)
+  ✔ laisser la possibilité de changer email @done(23-11-09 15:12) @project(Verify email)
+  ✔ custom style pages @done(23-11-09 15:51) @project(Verify email)
+  ✔ donner la possibilité de le faire plus tard @done(23-11-09 15:12) @project(Verify email)
+  ✔ favicon @done(23-11-09 16:06) @project(General)
+  ✔ hamburger icon @done(23-11-09 11:58) @project(General)

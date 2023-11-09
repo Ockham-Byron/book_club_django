@@ -9,13 +9,14 @@ User = get_user_model()
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control border-right-0', 'placeholder': _('Email')}),)
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control border-right-0', 'placeholder': _('Username')}),)
+    pseudo = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control border-right-0', 'placeholder': _('Username')}),)
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control border-right-0', 'placeholder': _('Password'), 'data-toggle': 'password',}))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control border-right-0', 'placeholder': _('Repeat Password'), 'data-toggle': 'password',}))
+    is_rgpd = forms.BooleanField(required=True)
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['pseudo', 'email', 'password1', 'password2', 'is_rgpd']
 
     def save(self, commit=True):
         user = super(UserRegistrationForm, self).save(commit=False)

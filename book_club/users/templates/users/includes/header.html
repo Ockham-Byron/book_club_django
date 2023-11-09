@@ -5,10 +5,14 @@
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="/">Home</a>
             </div>
-            <button aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation"
-                    class="navbar-toggler ml-auto float-right btncolor" data-target="#navbarToggle" data-toggle="collapse" type="button">
-                <i class="fas fa-bars fa-2x"></i>
-            </button>
+            
+             <input type="checkbox" id="hamburger-icon" data-target="#navbarToggle" data-toggle="collapse">
+                <label for="hamburger-icon" class="hamburger-toggle">
+                    <div class="bars" id="bar1"></div>
+                    <div class="bars" id="bar2"></div>
+                    <div class="bars" id="bar3"></div>
+                </label>
+                
             <div class="collapse navbar-collapse" id="navbarToggle">
                 <!-- Navbar Left Side -->
                 <div class="navbar-nav mr-auto">

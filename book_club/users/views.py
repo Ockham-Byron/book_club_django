@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model, login, logout, authenticate
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegistrationForm, UserLoginForm, UserUpdateForm
+from .forms import *
 
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
@@ -38,7 +38,11 @@ def verify_email(request):
             return redirect('verify-email-done')
         else:
             return redirect('signup')
-    return render(request, 'users/authentication/verify_email.html')
+    
+    context = {
+        'user': request.user,
+    }
+    return render(request, 'users/authentication/verify_email.html', context=context)
 
 def verify_email_done(request):
     user = request.user
@@ -63,6 +67,19 @@ def verify_email_confirm(request, uidb64, token):
 
 def verify_email_complete(request):
     return render(request, 'users/authentication/verify_email_complete.html')
+
+def change_email(request):
+    user = request.user
+    form = UserUpdateEmailForm()
+    if request.method == 'POST':
+        form = UserUpdateEmailForm(request.POST, instance=user)
+        if form.is_valid():
+            user.email = form.cleaned_data['email']
+            user.save()
+            return redirect('verify-email')
+    
+    context = {'form': form}
+    return render(request, 'users/authentication/change_email.html', context=context)
 
 
 # Create your views here.
@@ -130,6 +147,7 @@ def register_view(request):
             user = register_form.save(commit=False)
             password = register_form.cleaned_data['password2']
             user.set_password(password)
+            user.username = user.email
             user.save()
             new_user = authenticate(username=user.email, password=password)
             login(request, new_user)
@@ -146,11 +164,12 @@ def register_view(request):
     }
 
     return render(request, 'users/authentication/register.html', context=context)
+
 @login_required
 def custom_logout(request):
     logout(request)
     
-    return redirect("home")
+    return render(request, "users/authentication/logout.html")
 
 @login_required
 def profile(request, slug):

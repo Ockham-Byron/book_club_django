@@ -48,7 +48,11 @@ class UserLoginForm(AuthenticationForm):
     
     
     
-
+class UserUpdateEmailForm(forms.ModelForm):
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control border-right-0', 'placeholder': _('Email')}),)
+    class Meta:
+        model = User
+        fields = ['email']
     
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()

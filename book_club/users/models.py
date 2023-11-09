@@ -32,6 +32,7 @@ class CustomUser(AbstractUser):
     )
     id = models.UUIDField(default = uuid4, editable = False, primary_key=True)
     email = models.EmailField(unique=True)
+    pseudo = models.CharField(max_length=255, null=False, blank="False", default="Anonymous")
     avatar = models.CharField(max_length=255, choices=AVATAR, default='1')
     profile_pic = models.ImageField(blank=True, null=True, upload_to=path_and_rename)
     is_rgpd = models.BooleanField(default=False)

@@ -11,6 +11,7 @@ Authentication:
   ✔ form signup : ajouter les placeholders @done(23-11-06 16:49)
   ✔ faire logique envoi email @done(23-11-07 06:36)
   ✔ mise en page erreurs par champ @done(23-11-07 07:06)
+  ✔ faire page logout @done(23-11-09 13:19)
   ☐ gérer les messages globaux
   ☐ gérer oubli password
   ✔ permettre de voir le mot de passe @done(23-11-07 07:19)
@@ -19,18 +20,21 @@ Authentication:
   ☐ RGPD logic dans register
   ☐ traduire messages send email
   ☐ redirect to dashboard
-  ☐ faire la version ordi
+  ✔ faire la version ordi @done(23-11-09 12:28)
   ☐ ecrire une fonction js pour changer couleur input if error
+  ☐ ecrire une fonction js pour verifier en temps reel password validation
+  ☐ après login, si email pas vérifié, le redemander
 
 Verify email:
   ☐ template email
+  ✔ laisser la possibilité de changer email @done(23-11-09 15:12)
   ☐ custom style pages
-  ☐ donner la possibilité de le faire plus tard
+  ✔ donner la possibilité de le faire plus tard @done(23-11-09 15:12)
   ☐ request new link
 
 Dashboard:
 
 General:
   ☐ favicon
-  ☐ hamburger icon
+  ✔ hamburger icon @done(23-11-09 11:58)
 

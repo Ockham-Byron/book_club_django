@@ -75,64 +75,19 @@ input:focus::placeholder{
   
 }
 
-.login-register {
-    width: 100%;
-    height: 70vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+
+/* || Reset password */
+
+#password-form input{
+  width:85% !important;
+  height: 50px !important;
+  background-color:rgb(239, 239, 239) !important;
+  border:none !important;
 }
 
-.book-register {
-    background-color: #fff;
-    width: 300px;
-    height: 200px;
-    border-radius: 20px;
-    perspective: 600px;
-    position: relative;
-}
-
-.book-register::before {
-    content: '';
-    position: absolute;
-    z-index: 5;
-    width: 50%;
-    height: 100%;
-    right: 50%;
-    background-color: var(--brand-color);
-    border-radius: 20px 0 0 20px;
-    transform-origin: center right;
-    transform: rotateY(180deg);
-    transition: 0.7s ease all;
-}
-
-.book-register:hover::before {
-    transform: rotateY(0deg);
-}
-
-.book-register .page-book-register {
-    position: absolute;
-    width: 50%;
-    top: 0;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-size: 30px;
-    font-weight: bold;
-}
-
-.book-register .page-book-register.page-login {
-    background-color: var(--dark-color);
-    border-radius: 20px 0 0 20px;
-    left: 0;
-}
-
-.book-register .page-book-register.page-register {
-    background-color: var(--mid-color);
-    right: 0;
-    border-radius: 0 20px 20px 0;
+#password-form input:focusin{
+  border-color:var(--mid-color) !important;
 }
 
 /* Alerts */

@@ -12,6 +12,14 @@ Authentication:
 Verify email:
   ☐ request new link
 
+Change password:
+  ☐ customize pages
+  ☐ customize errors and help texts
+  ☐ customize emails
+  ✔ ajouter data-toggle @done(23-11-10 11:50)
+  ☐ prévoir link expiré
+  ☐ prévoir adresse inconnue : proposer de créer un compte
+
 
 
 Archive:

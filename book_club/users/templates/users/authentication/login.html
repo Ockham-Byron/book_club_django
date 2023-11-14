@@ -27,15 +27,18 @@
                 {% csrf_token %}
                 <div class="input-group">
                     {{login_form.username}}
-                    <span class="input-group-append bg-white border-left-0">
-                        <span class="input-group-text bg-transparent">
-                            @
-                        </span>
+                    <span class="input-group-text bg-transparent">
+                        <i class="fa-solid fa-at" ></i>
                     </span>
                 </div>
 
-                
-                {{login_form.password}}
+                <div class="input-group">
+                    {{login_form.password}}
+                    <span class="input-group-text bg-transparent">
+                        <i class="fa-regular fa-eye" id="pwd-icon" onclick="togglePassword()"></i>
+                    </span>
+                </div>
+
                 {{login_form.password.errors}}
                     
                 
@@ -59,6 +62,24 @@
     </div>
   <!-- End auth wrapper -->
 </div>
+{% endblock %}
+
+{% block extrajs %}
+<script>
+        function togglePassword() {
+            var input = document.getElementById("id_password");
+            var icon = document.getElementById("pwd-icon");
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                input.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        }
+    </script>
 {% endblock %}
 
 

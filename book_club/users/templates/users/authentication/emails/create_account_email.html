@@ -7,11 +7,11 @@
         <p>{% trans "You're receiving this email because you requested a password reset for your user account at"%} {{domain}}</p>
         <p>{% trans "We don't have any account registered with this email address." %}</p>
         <p>{% trans "However, you can create a new account !" %}</p>
-        <a href="{% url 'register' %}" style="border: 0; color: #ffffff; background-color: #93aec1; padding: 15px; margin-top:40px; font-weight: bold; text-decoration: none; border-radius: 5px;">
+        <a href="{{ request.scheme }}://{{ domain }}{% url 'register' %}" style="border: 0; color: #ffffff; background-color: #93aec1; padding: 15px; margin-top:40px; font-weight: bold; text-decoration: none; border-radius: 5px;">
             {% trans 'Create account' %}
         </a>
         <p style="margin-top: 40px;">{% trans 'Or you can copy the link below to your browser' %}</p>
-        <p>{% url "register" %}</p>
+        <p>{{ request.scheme }}://{{ domain }}{% url "register" %}</p>
         <p>Signature</p>
     </div>
     <div style="text-align: center; margin-top: 20px 0;">

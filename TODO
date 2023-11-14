@@ -1,28 +1,35 @@
 
 
 Authentication:
-  ☐ gérer les messages globaux
-  ☐ gérer oubli password
   ☐ refaire toutes les traductions
   ☐ traduire messages send email
-  ☐ redirect to dashboard
   ☐ ecrire une fonction js pour changer couleur input if error
   ☐ ecrire une fonction js pour verifier en temps reel password validation
+  ☐ liens vers pages légales
+  ☐ changer validation password
 
 Verify email:
   ☐ request new link
 
 Change password:
-  ☐ customize pages
   ☐ customize errors and help texts
-  ☐ customize emails
-  ✔ ajouter data-toggle @done(23-11-10 11:50)
-  ☐ prévoir link expiré
-  ☐ prévoir adresse inconnue : proposer de créer un compte
+  
+  ✔ prévoir link expiré @done(23-11-13 16:09)
 
-
+Header:
+  ☐ changer icon logout
+  ☐ changer nom user
+  ☐ prévoir avatar
 
 Archive:
+  ✔ tout vérifier avec bootstrap 5 @done(23-11-13 15:58) @project(Général)
+  ✔ gérer les messages globaux @done(23-11-13 15:58) @project(Authentication)
+  ✔ gérer oubli password @done(23-11-13 15:58) @project(Authentication)
+  ✔ redirect to dashboard @done(23-11-13 15:58) @project(Authentication)
+  ✔ customize pages @done(23-11-10 15:30) @project(Change password)
+  ✔ customize emails @done(23-11-10 15:30) @project(Change password)
+  ✔ ajouter data-toggle @done(23-11-10 11:50) @project(Change password)
+  ✔ prévoir adresse inconnue : proposer de créer un compte @done(23-11-10 15:30) @project(Change password)
   ✔ install @done(23-10-30 15:35) @project(Internationalization)
   ✔ style language switch @done(23-11-06 16:45) @project(Internationalization)
   ✔ vérifier que le mail existe @done(23-11-06 11:12) @project(Authentication)

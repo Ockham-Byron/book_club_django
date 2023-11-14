@@ -9,7 +9,10 @@ User = get_user_model()
 
 
 class UserRegistrationForm(UserCreationForm):
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control border-right-0', 'placeholder': _('Email')}),)
+    email = forms.EmailField(error_messages={
+                                'unique': _("A user with that email already exists. If you have lost your password, please go to Login and Forgot password."),},
+                            widget=forms.EmailInput(attrs={'class': 'form-control border-right-0', 'placeholder': _('Email')}),
+                            )
     pseudo = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control border-right-0', 'placeholder': _('Username')}),)
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control border-right-0', 'placeholder': _('Password'), 'data-toggle': 'password',}))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control border-right-0', 'placeholder': _('Repeat Password'), 'data-toggle': 'password',}))

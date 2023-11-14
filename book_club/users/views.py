@@ -70,9 +70,10 @@ def verify_email_confirm(request, uidb64, token):
         user.save()
         return redirect('verify-email-complete')   
     else:
-        messages.warning(request, 'The link is invalid.')
-        # TODO: add page to request new link
-    return render(request, 'users/authentication/verify_email_confirm.html')
+        messages.warning(request, 'The link is invalid. Please register again.')
+        print('pas marché')
+        return redirect('register')
+    
 
 def verify_email_complete(request):
     return render(request, 'users/authentication/verify_email_complete.html')
@@ -114,6 +115,7 @@ def login_view(request):
                 )
                 if user is not None:
                     login(request, user)
+                    messages.success(request, "Login successful", extra_tags="Félicitations !!")
                     remember_me = login_form.cleaned_data.get('remember_me')
                     if not remember_me:
                         # set session expiry to 0 seconds. So it will automatically close the session after the browser is closed.
@@ -194,21 +196,38 @@ class PasswordResetCustomView(PasswordContextMixin, FormView):
         user = User.objects.filter(email=email)
         if user:
             email_template = 'users/authentication/emails/password_reset_email.html'
-        else:
-            email_template = 'users/emails/authentication/create_account_email.html'
+        
             
-        opts = {
-            'use_https': self.request.is_secure(),
-            'token_generator': self.token_generator,
-            'from_email': self.from_email,
-            'email_template_name': email_template,
-            'subject_template_name': self.subject_template_name,
-            'request': self.request,
-            'html_email_template_name': email_template,
-            'extra_email_context': self.extra_email_context,
-        }
-        form.save(**opts)
-        return super().form_valid(form)
+            opts = {
+                'use_https': self.request.is_secure(),
+                'token_generator': self.token_generator,
+                'from_email': self.from_email,
+                'email_template_name': email_template,
+                'subject_template_name': self.subject_template_name,
+                'request': self.request,
+                'html_email_template_name': email_template,
+                'extra_email_context': self.extra_email_context,
+            }
+            form.save(**opts)
+            return super().form_valid(form)
+        
+        else:
+            current_site = get_current_site(self.request)
+            email = email
+            subject = _('Password reset on App')
+            message = render_to_string('users/authentication/emails/create_account_email.html', {
+                'request': self.request,
+                'domain': current_site.domain,
+            })
+            email = EmailMessage(
+                subject, message, to=[email]
+            )
+            email.content_subtype = 'html'
+            email.send()
+            return redirect('password_reset_done')
+            
+    
+    
 
 
 INTERNAL_RESET_SESSION_TOKEN = '_password_reset_token'

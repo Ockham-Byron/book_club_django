@@ -186,6 +186,10 @@ a:hover{
 
 /* || Language selector */
 
+.site-header {
+  list-style: none !important;
+}
+
 
 #language_select {
   padding:10px 50px;
@@ -236,4 +240,11 @@ color:var(--light-color) !important;
 .btn-mid-color:hover {
   color:black;
   background-color: var(--brand-color);
+}
+
+/* || Toast */
+.notification{
+  position: absolute;
+  top: 5rem;
+  right: 1rem;
 }

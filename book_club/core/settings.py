@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #tiers
-    
+    'crispy_forms',
 
     #my_apps 
     'users',

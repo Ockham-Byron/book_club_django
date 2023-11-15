@@ -32,8 +32,12 @@ class CustomUser(AbstractUser):
     )
     id = models.UUIDField(default = uuid4, editable = False, primary_key=True)
     email = models.EmailField(unique=True)
+    is_mail_visible = models.BooleanField(default=False)
+    is_name_visible = models.BooleanField(default=False)
     pseudo = models.CharField(max_length=255, null=False, blank="False", default="Anonymous")
     avatar = models.CharField(max_length=255, choices=AVATAR, default='1')
+    bio = models.CharField(max_length=500, null=True, blank="True")
+
     profile_pic = models.ImageField(blank=True, null=True, upload_to=path_and_rename)
     is_rgpd = models.BooleanField(default=False)
     email_is_verified = models.BooleanField(default=False)
@@ -57,6 +61,6 @@ class CustomUser(AbstractUser):
             pass
         # create slug
         if not self.slug:
-            self.slug = slugify(self.username + '_' + str(self.id))
+            self.slug = slugify(self.pseudo + '_' + str(self.id))
         super(CustomUser, self).save(*args, **kwargs)
     

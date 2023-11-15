@@ -1,85 +1,24 @@
+
+
 /* Layout */
-.pos-r {
-  position: relative !important;
-}
 
-ul {
-  margin-bottom: 0 !important;
-}
-
-.mT-30 {
-  margin-top: 30px !important;
+#dashboard-page {
+  background-color: var(--lightest-color);
+  padding:0 !important;
 }
 
 /* Sidebar */
-
-.sidebar {
-  background-color: #fff;
-  bottom: 0;
-  overflow: hidden;
-  position: fixed;
-  top: 0;
-  -webkit-transition: all 0.2s ease;
-  -o-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  width: 280px;
-  z-index: 1000;
+#sidebar{
+  background-color: var(--darkest-color) !important;
+}
+img#sidebar-logo {
+  width:40px;
 }
 
-.sidebar-inner {
-  position: relative;
-  height: 100%;
-}
-
-.sidebar-logo {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.0625);
-  border-right: 1px solid rgba(0, 0, 0, 0.0625);
-  line-height: 0;
-  padding: 0 20px;
-  -webkit-transition: all 0.2s ease;
-  -o-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-}
-
-.sidebar ul {
-  list-style-type: none;
-}
-
-.ps {
-  overflow: hidden !important;
-  overflow-anchor: none;
-  -ms-overflow-style: none;
-  touch-action: auto;
-  -ms-touch-action: auto;
-}
-
-.sidebar-menu {
-  border-right: 1px solid rgba(0, 0, 0, 0.0625);
-  height: calc(100vh - 65px);
-  list-style: none;
-  margin: 0;
-  overflow: auto;
-  padding: 0;
-  position: relative;
-}
-
-.sidebar-menu li {
-  position: relative;
+@media  screen and (max-width:767px) {
+  #menu {
+    height: 41px;
+  }
 }
 
 
-
-@media screen and (min-width: 992px) and (max-width: 1439px) {
-.sidebar {
-    width: 70px;
-}
-
-.sidebar .sidebar-inner .sidebar-logo {
-  border-bottom: 1px solid transparent;
-  padding: 0;
-}
-
-.sidebar .sidebar-inner .sidebar-menu {
-  overflow-x: hidden;
-}
-}

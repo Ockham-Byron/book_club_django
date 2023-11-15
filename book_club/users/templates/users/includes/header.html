@@ -1,4 +1,4 @@
-{% load static i18n %}
+{% load static i18n avatar %}
 
 <header class="site-header list-unstyled" style="margin-bottom: 5px">
 
@@ -21,11 +21,16 @@
                 <!-- Navbar Right Side -->
                 <div class="navbar-nav ms-auto text-center pe-3">
                     {% if user.is_authenticated %}
-                        <a class="nav-item nav-link" href="{% url 'profile' user.slug %}">
-                            <i class="fas fa-user fa-xl"></i><p class="m-0"><small>{{user.pseudo}}</small></p>
+                        <a class="nav-item nav-link" href="{% url 'dashboard' %}">
+                            {% if request.user.profile.avatar %}
+                                <span class="user-img"><img class="rounded-circle" src="{{ request.user.avatar.url }} "width="45" alt="profile_pic"></span>
+                            {% else %}
+                                <span class="user-img">{{ request.user|avatar }}</span> 
+                            {% endif %} 
+                            <p class="m-0"><small>{{user.pseudo}}</small></p>
                         </a>
                         <a class="nav-item nav-link" href="{% url 'logout' %}">
-                            <i class="fa-solid fa-person-walking-luggage fa-xl"></i><p class="m-0"><small>{% trans 'Log Out' %}</small></p>
+                            <i class="fa-solid fa-person-walking-luggage header-icon"></i><p class="m-0"><small>{% trans 'Sign out' %}</small></p>
                         </a>
                     {% else %}
                         <a class="nav-item nav-link " href="{% url 'login' %}">

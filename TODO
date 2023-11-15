@@ -1,27 +1,30 @@
 
-
 Authentication:
   ☐ refaire toutes les traductions
   ☐ traduire messages send email
   ☐ ecrire une fonction js pour changer couleur input if error
-  ✔ ecrire une fonction js pour verifier en temps reel password validation @done(23-11-14 11:46)
   ☐ liens vers pages légales
-  ✔ changer validation password @done(23-11-14 11:46)
 
 Verify email:
   ☐ request new link
 
-Change password:
-  ✔ customize errors and help texts @done(23-11-14 11:35)
-  
-  ✔ prévoir link expiré @done(23-11-13 16:09)
+Profile:
+  ☐ faire le layout
+  ☐ changer le profil
+  ☐ ajouter photo profil
 
-Header:
-  ✔ changer icon logout @done(23-11-14 11:46)
-  ✔ changer nom user @done(23-11-14 11:46)
-  ☐ prévoir avatar
+Pages:
+  ☐ prévoir page 404
+
 
 Archive:
+  ✔ ecrire une fonction js pour verifier en temps reel password validation @done(23-11-14 11:46) @project(Authentication)
+  ✔ changer validation password @done(23-11-14 11:46) @project(Authentication)
+  ✔ customize errors and help texts @done(23-11-14 11:35) @project(Change password)
+  ✔ prévoir link expiré @done(23-11-13 16:09) @project(Change password)
+  ✔ changer icon logout @done(23-11-14 11:46) @project(Header)
+  ✔ changer nom user @done(23-11-14 11:46) @project(Header)
+  ✔ prévoir avatar @done(23-11-14 16:16) @project(Header)
   ✔ tout vérifier avec bootstrap 5 @done(23-11-13 15:58) @project(Général)
   ✔ gérer les messages globaux @done(23-11-13 15:58) @project(Authentication)
   ✔ gérer oubli password @done(23-11-13 15:58) @project(Authentication)

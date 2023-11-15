@@ -1,6 +1,7 @@
 {% extends 'dashboard/base.html' %}
-
+{% load i18n %}
 {% block content %}
 
-
+<h1>{% trans "Dashboard" %}</h1>
+<h2>{{user.pseudo}}</h2>
 {% endblock %}

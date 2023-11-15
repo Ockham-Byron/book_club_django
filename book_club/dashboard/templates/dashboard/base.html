@@ -31,18 +31,20 @@
 <body>
   {{localize_key}}
  
-        {% include 'users/includes/header.html' %}
+  <div class="container-fluid overflow-hidden">
+    <div class="row vh-100 overflow-auto">
 
+      {% include 'dashboard/includes/sidebar.html' %}
+      <div id="dashboard-page" class="col d-flex flex-column">
+        <main class="row align-items-center h-100">
+          {% block content %}{% endblock %}
+        </main>
+      </div>
+    </div>
+  </div>
         
-
-        
-        <div class="page-wrapper">
-        
-     
-        {% block content %}{% endblock %}
-        </div>
-        {% include 'users/includes/messages.html' %}
-        {% include 'users/includes/footer.html' %}
+  {% include 'users/includes/messages.html' %}
+  {% include 'users/includes/footer.html' %}
 
        
 

@@ -55,11 +55,11 @@
 
                 <div class="password-help-container">
                     <ul class="password-help">
-                        <li id="password-len">{% trans 'More than 8 characters' %}</li>
-                        <li id="password-mixed">{% trans 'More than 8 characters' %}</li>
-                        <li id="password-number">{% trans 'More than 8 characters' %}</li>
-                        <li id="password-special">{% trans 'More than 8 characters' %}</li>
-                        <li id="password-same">{% trans 'More than 8 characters' %}</li>
+                        <li id="password-len">{% trans 'Minimum 8 characters' %}</li>
+                        <li id="password-mixed">{% trans 'Mix of lowercase and uppercase' %}</li>
+                        <li id="password-number">{% trans 'Minimum a number' %}</li>
+                        <li id="password-special">{% trans 'Minimum a special character' %}</li>
+                        <li id="password-same">{% trans 'Same passwords' %}</li>
                     </ul>
                 </div>
                
@@ -122,70 +122,110 @@
     let passwordSpecial = document.getElementById("password-special");
     let passwordSame = document.getElementById("password-same");
     let button = document.getElementById("register-btn");
-    let length = false;
+    let is_length = false;
+    let is_mixed = false;
+    let is_number = false;
+    let is_special = false;
+    let is_same = false;
+
+    
+
     button.disabled = true;
     
     password1.onkeyup = function(){
-        console.log(conditions)
+      
         password1Input = password1.value;
         password2Input = password2.value;
         // Check password length
-        if (password1Input.length > 8){
-            passwordLen.style.color = "green";
-            length = true;
+        if (password1Input.length >= 8){
+            is_length = true;
+            passwordLen.classList.add("valid");
+            passwordLen.classList.remove("warning");
+            
+            
         }
         else {
-            passwordLen.style.color = "red";
+            passwordLen.classList.add("warning");
+            passwordLen.classList.remove("valid");
+            is_length = false;
         }
         // Check for mixed case
         if (password1Input.match(/[a-z]/) && password1Input.match(/[A-Z]/)) {
-            passwordMixed.style.color = "green";
-            conditions += 1;
+            passwordMixed.classList.remove("warning");
+            passwordMixed.classList.add("valid");
+            is_mixed = true;
         } else {
-            passwordMixed.style.color = "red";
+            passwordMixed.classList.add("warning");
+            passwordMixed.classList.remove("valid");
+            is_mixed = false;
             
         }
   
         // Check for numbers
         if (password1Input.match(/\d/)) {
-            passwordNumber.style.color = "green";
-            conditions += 1;
+            passwordNumber.classList.add("valid");
+            passwordNumber.classList.remove("warning");
+            is_number = true;
         } else {
-            passwordNumber.style.color = "red";
+            passwordNumber.classList.add("warning");
+            passwordNumber.classList.remove("valid");
+            is_number=false;
             
         }
   
         // Check for special characters
         if (password1Input.match(/[^a-zA-Z\d]/)) {
-            passwordSpecial.style.color = "green";
-            conditions += 1;
+            passwordSpecial.classList.add("valid");
+            passwordSpecial.classList.remove("warning");
+            is_special=true;
         } else {
-            passwordSpecial.style.color = "red";
-            button.disabled= true;
+            passwordSpecial.classList.add("warning");
+            passwordSpecial.classList.remove("valid");
+            is_special=false;
+        }
+
+        if (password1Input == password2Input){
+            passwordSame.classList.add("valid");
+            passwordSame.classList.remove("warning");
+            is_same = true;
+        }
+        else {
+            passwordSame.classList.add("warning");
+            passwordSame.classList.remove("valid");
+            is_same=false;
+        }
+
+        if(is_length && is_mixed && is_number  && is_special  && is_same ){
+            button.disabled = false;
+        }
+        else {
+            button.disabled = true;
         }
 
         
         
     }
     //Check for same passwords
-password2.onkeyup = function(){
-    password1Input = password1.value;
-    password2Input = password2.value;
-    if (password1Input == password2Input){
-        passwordSame.style.color = "green";
-        conditions += 1;
-    }
-    else {
-        passwordSame.style.color = "red";
-        button.disabled= true;
-    }
+    password2.onkeyup = function(){
+        password1Input = password1.value;
+        password2Input = password2.value;
+        if (password1Input == password2Input){
+            passwordSame.classList.add("valid");
+            passwordSame.classList.remove("warning");
+            is_same = true;
+        }
+        else {
+            passwordSame.classList.add("warning");
+            passwordSame.classList.remove("valid");
+            is_same=false;
+        }
 
-    if (conditions >= 5){
-        button.disabled= false;
-    }
-    else {
-        button.disabled= true;
-    }
+        if(is_length && is_mixed && is_number  && is_special  && is_same ){
+            button.disabled = false;
+        }
+        else {
+            button.disabled = true;
+        }
 }    
         
 

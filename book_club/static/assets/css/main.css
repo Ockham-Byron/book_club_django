@@ -112,9 +112,19 @@ a:hover{
   max-height: 50px !important;
 
 }
+@media screen and (max-width: 767px) {
+  .navbar-nav{
+    display: contents !important;
+  }
+  
+}
 
 .navbar a {
   color: var(--dark-color);
+}
+
+#header-logo {
+  width:50px;
 }
 
 /* Hamburger icon */
@@ -242,9 +252,3 @@ color:var(--light-color) !important;
   background-color: var(--brand-color);
 }
 
-/* || Toast */
-.notification{
-  position: absolute;
-  top: 5rem;
-  right: 1rem;
-}

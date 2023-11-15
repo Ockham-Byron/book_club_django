@@ -69,7 +69,7 @@ input:focus::placeholder{
   }
   .auth-wrapper{
     max-width:400px;
-    height:700px;
+    height:750px;
     padding:30px;
     border:1px solid #ccc;
     border-radius:40px;
@@ -110,10 +110,6 @@ ul.form-errors li, ul.errorlist li {
   list-style: none !important;
 }
 
-/* ul.errorlist li {
-  color:palevioletred;
-  font-weight: bold !important;
-} */
 
 .input-invalid{
   background-color:palevioletred !important;
@@ -123,3 +119,37 @@ ul.form-errors li, ul.errorlist li {
 .input-invalid::placeholder{
   color:white !important;
 }
+
+.password-help-container{
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius:40px;
+  text-align: start !important;
+}
+
+.password-help {
+  list-style-type: none !important;
+  
+}
+
+.password-help li.warning {
+  color:#D21F3C;
+}
+
+.password-help li.valid {
+  color:#5DBBb3;
+}
+
+.password-help li.warning::before {
+  content: "\f06a";
+  font: var(--fa-font-solid);
+  color:"#D21F3C";
+  padding-right: 5px;
+}
+
+.password-help li.valid::before {
+  content: "\f058";
+  font: var(--fa-font-solid);
+  color:"#5DBBb3";
+  padding-right: 5px;
+}
+

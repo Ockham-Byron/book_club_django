@@ -61,21 +61,14 @@
     </script>
    
     <!-- Display Toast Notifications-->
+    
     {% if messages %}
-      <script>
-          {% for message in messages %}
-              $(document).ready(function () {
-                  $('.toast').toast('show');
-              });
-          {% endfor %}
-      </script>
-    {% endif %}
-
     <script>
       var messageModal = new bootstrap.Modal(document.getElementById("notification-modal"));
       messageModal.show();
       console.log("ok");
     </script>
+    {% endif %}
    
 
 

@@ -4,21 +4,21 @@ Authentication:
   ☐ refaire toutes les traductions
   ☐ traduire messages send email
   ☐ ecrire une fonction js pour changer couleur input if error
-  ☐ ecrire une fonction js pour verifier en temps reel password validation
+  ✔ ecrire une fonction js pour verifier en temps reel password validation @done(23-11-14 11:46)
   ☐ liens vers pages légales
-  ☐ changer validation password
+  ✔ changer validation password @done(23-11-14 11:46)
 
 Verify email:
   ☐ request new link
 
 Change password:
-  ☐ customize errors and help texts
+  ✔ customize errors and help texts @done(23-11-14 11:35)
   
   ✔ prévoir link expiré @done(23-11-13 16:09)
 
 Header:
-  ☐ changer icon logout
-  ☐ changer nom user
+  ✔ changer icon logout @done(23-11-14 11:46)
+  ✔ changer nom user @done(23-11-14 11:46)
   ☐ prévoir avatar
 
 Archive:

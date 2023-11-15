@@ -12,12 +12,15 @@
     <!-- Custom Css Files-->
     <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/forms.css' %}">
+     <link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}">
     
 
     <!--Font awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
    
-  
+    <!-- Custom JS -->
+    <script src="{% static 'assets/js/dashboard.js' %}"></script>
+
     <title>{% block title %} {% endblock %} </title>
 
     <!-- Favicon -->
@@ -60,11 +63,14 @@
       }
     </script>
 
+  <!-- Show Popup message -->
+  {% if message %}
     <script>
       var messageModal = new bootstrap.Modal(document.getElementById("notification-modal"));
       messageModal.show();
       console.log("ok");
     </script>
+    {% endif %}
 
     
    

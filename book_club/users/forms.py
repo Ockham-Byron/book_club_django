@@ -13,9 +13,9 @@ class UserRegistrationForm(UserCreationForm):
                                 'unique': _("A user with that email already exists. If you have lost your password, please go to Login and Forgot password."),},
                             widget=forms.EmailInput(attrs={'class': 'form-control border-right-0', 'placeholder': _('Email')}),
                             )
-    pseudo = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control border-right-0', 'placeholder': _('Username')}),)
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control border-right-0', 'placeholder': _('Password'), 'data-toggle': 'password',}))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control border-right-0', 'placeholder': _('Repeat Password'), 'data-toggle': 'password',}))
+    pseudo = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control border-right-0', 'placeholder': _('Username'), 'autocomplete':"username"}),)
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control border-right-0', 'placeholder': _('Password'), 'autocomplete': "new-password"}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control border-right-0', 'placeholder': _('Repeat Password'), 'autocomplete': 'new-password'}))
     is_rgpd = forms.BooleanField(required=True)
 
     class Meta:

@@ -9,9 +9,11 @@ Verify email:
   ☐ request new link
 
 Profile:
-  ☐ faire le layout
+  ✔ faire le layout @done(23-11-16 15:53)
   ☐ changer le profil
   ☐ ajouter photo profil
+  ☐ choisir la couleur de l'avatar
+  ☐ si pas de user = 404
 
 Pages:
   ☐ prévoir page 404

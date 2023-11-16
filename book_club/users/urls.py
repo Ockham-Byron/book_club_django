@@ -29,5 +29,6 @@ urlpatterns = [
 
     #profile url
     path('profile/<slug:slug>', profile, name='profile'),
+    path('profile/<slug:slug>/update', profile_update, name='profile-update')
     
 ] 

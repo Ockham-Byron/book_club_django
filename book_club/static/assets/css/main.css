@@ -372,11 +372,16 @@ color:var(--light-color) !important;
 /* || Profile */
 
 @media only screen and (min-width: 768px){
-  .profile-card {
+  
+  .profile-card, .profile-subcard {
     background-color: whitesmoke;
     max-width:400px;
     box-shadow: 0 10px 7px -5px rgba(0, 0, 0, 0.4);
     border-radius:30px 30px 30px 30px;
+  }
+
+  .profile-subcard-wrapper {
+    height: 100%;
   }
 
   .profile-card header::before{
@@ -394,6 +399,8 @@ color:var(--light-color) !important;
   .profile-card header{
     border-radius: 30px 30px 0 0;
   }
+
+
 
  
 }
@@ -514,6 +521,13 @@ a.profile-card-edit{
   z-index:100;
   color:black !important;
 
+}
+
+.profile-subcard mark {
+  display: inline-block;
+  line-height: 0em;
+  padding-bottom: 0.8em;
+  background-color: var(--joy-color);
 }
 
 

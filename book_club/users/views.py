@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext as _
 from django.contrib.auth import get_user_model, login, logout, authenticate
 from django.contrib.auth.tokens import default_token_generator
@@ -306,21 +307,23 @@ class PasswordResetConfirmCustomView(PasswordContextMixin, FormView):
 
 @login_required
 def profile(request, slug):
+    user = get_object_or_404(User, slug=slug)
+    
+    return render(request, 'users/profile.html', {'user': user})
+
+
+@login_required
+def profile_update(request, slug):
     if request.method == 'POST':
-        user = request.user
-        form = UserUpdateForm(request.POST, request.FILES, instance=user)
+        form = UserUpdateForm(request.POST, request.FILES, instance=request.user)
+    
+
         if form.is_valid():
-            user_form = form.save()
+            form.save()
+            messages.success(request, _('Your profile has been successfully updated '))
+            return redirect(to='profile', slug=request.user.slug)
+    else:
+        form = UserUpdateForm(instance=request.user)
+        
 
-            messages.success(request, f'{user_form}, Your profile has been updated!')
-            return redirect('profile', user_form.username)
-
-        for error in list(form.errors.values()):
-            messages.error(request, error)
-
-    user = User.objects.filter(slug=slug).first()
-    if user:
-        form = UserUpdateForm(instance=user)
-        return render(request, 'users/profile.html', context={'form': form})
-
-    return redirect("home")
+    return render(request, 'users/profile_update.html', {'form':form})

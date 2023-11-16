@@ -104,8 +104,10 @@ class UserUpdatePasswordForm(forms.Form):
         return self.user
     
 class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
-
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control border-right-0', 'placeholder': _('Email')}),)
+    pseudo = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder':_('Pseudo')}),)
+    profile_pic = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
+    bio = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}))
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email']
+        fields = ['first_name', 'last_name', 'email', 'profile_pic', 'bio']

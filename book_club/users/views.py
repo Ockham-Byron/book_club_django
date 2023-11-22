@@ -23,6 +23,8 @@ from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
 from .tokens import account_activation_token
 
+import os
+
 User = get_user_model()
 
 # send email with verification link
@@ -315,15 +317,29 @@ def profile(request, slug):
 @login_required
 def profile_update(request, slug):
     if request.method == 'POST':
+        print("request method post")
         form = UserUpdateForm(request.POST, request.FILES, instance=request.user)
-    
-
         if form.is_valid():
+            print("form ok")
             form.save()
             messages.success(request, _('Your profile has been successfully updated '))
-            return redirect(to='profile', slug=request.user.slug)
+            return redirect(to='profile', slug=slug)
+        else:
+            print("Invalid form")
+            for error in list(form.errors.values()):
+                print(request, error)
+            
+    
     else:
         form = UserUpdateForm(instance=request.user)
         
 
     return render(request, 'users/profile_update.html', {'form':form})
+
+def delete_profile_pic(request, slug):
+    os.remove(request.user.profile_pic.path)
+    request.user.profile_pic.delete()
+    return redirect(to='profile', slug=slug)
+    
+
+

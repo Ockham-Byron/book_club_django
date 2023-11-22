@@ -27,8 +27,11 @@ urlpatterns = [
     path('password-reset-confirm/<uidb64>/<token>/', PasswordResetConfirmCustomView.as_view(template_name='users/authentication/password_reset_confirm.html'),name='password_reset_confirm'),
     path('password-reset-complete/',PasswordResetCompleteView.as_view(template_name='users/authentication/password_reset_complete.html'),name='password_reset_complete'),
 
+   
+
     #profile url
     path('profile/<slug:slug>', profile, name='profile'),
-    path('profile/<slug:slug>/update', profile_update, name='profile-update')
+    path('profile/<slug:slug>/update', profile_update, name='profile-update'),
+    path('profile/<slug:slug>)/update/delete-profile-pic', delete_profile_pic, name='profile-pic-delete')
     
 ] 

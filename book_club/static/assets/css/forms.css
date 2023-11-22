@@ -1,7 +1,7 @@
 /* || General */
 
 input.form-control, span.input-group-text {
- background-color: rgb(239, 239, 239) !important;
+ 
  border:none !important;
  height:50px !important;
  font-size:20px;
@@ -155,20 +155,27 @@ ul.form-errors li, ul.errorlist li {
 
 /* || Dashboard Forms */
 
-.update-form {
+@media only screen and (min-width: 768px) {
+  .kform {
+    max-width:400px;
+    background-color: #fff;
+    border-radius: 20px;
+  position: relative;
+  }
+}
+
+.kform {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  max-width: 350px;
-  background-color: #fff;
+  width:400px;
   padding: 20px;
-  border-radius: 20px;
-  position: relative;
+  
 }
 
-.title {
+.kform .title {
   font-size: 28px;
-  color: royalblue;
+  color:var(--mid-color);
   font-weight: 600;
   letter-spacing: -1px;
   position: relative;
@@ -177,52 +184,29 @@ ul.form-errors li, ul.errorlist li {
   padding-left: 30px;
 }
 
-.title::before,.title::after {
+.kform .title::before, .kform .title::after {
   position: absolute;
   content: "";
   height: 16px;
   width: 16px;
   border-radius: 50%;
   left: 0px;
-  background-color: royalblue;
+  background-color: var(--mid-color);
 }
 
-.title::before {
+.kform .title::before {
   width: 18px;
   height: 18px;
-  background-color: royalblue;
+  background-color: var(--mid-color);
 }
 
-.title::after {
+.kform .title::after {
   width: 18px;
   height: 18px;
   animation: pulse 1s linear infinite;
 }
 
- .signin {
-  color: rgba(88, 87, 87, 0.822);
-  font-size: 14px;
-}
-
-.signin {
-  text-align: center;
-}
-
-.signin a {
-  color: royalblue;
-}
-
-.signin a:hover {
-  text-decoration: underline royalblue;
-}
-
-
-
-.update-form label {
-  position: relative;
-}
-
-.update-form input {
+.kform input, .kform textarea {
   width: 100%;
   padding: 10px 10px 20px 10px;
   outline: 0;
@@ -230,35 +214,79 @@ ul.form-errors li, ul.errorlist li {
   border-radius: 10px;
 }
 
-.update-form label .input + span {
-  position: absolute;
+.kform .mid-inputs input {
+  width: 48% !important;
+}
+
+.kform input[value], .kform input[placeholder], .kform textarea, .kform textarea[placeholder] {
+ 
   left: 10px;
   top: 15px;
   color: grey;
   font-size: 0.9em;
   cursor: text;
   transition: 0.3s ease;
+
 }
 
-.udpate-form label .input:placeholder-shown + span {
-  top: 15px;
-  font-size: 0.9em;
-}
 
-.update-form label .input:focus + span,.form label .input:valid + span {
+
+.korm label .input:focus + span,.kform label .input:valid + span {
   top: 0px;
   font-size: 0.7em;
   font-weight: 600;
 }
 
-.update-form label .input:valid + span {
-  color: green;
+
+.avatar-wrapper {
+  position: relative;
+  width:100px;
+  height:100px;
 }
 
-.submit {
+.avatar-upload .avatar, img.avatar-upload {
+  height:100px !important;
+  width: 100px !important;
+  border-radius: 50px !important;
+  font-size: 50px !important;
+  
+
+}
+
+.avatar-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height:100px !important;
+  width: 100px !important;
+  border-radius: 50px !important;
+  
+  opacity: 0.5;
+  transition: .3s ease;
+  background-color: black;
+}
+
+.avatar-overlay .icon {
+  color:whitesmoke !important;
+  font-size:40px;
+  padding-top: 30px;
+}
+
+#fileList ul{
+  list-style: none;
+  padding:0 !important; 
+}
+
+#fileList img {
+  display: block !important;
+}
+
+.kform .submit {
   border: none;
   outline: none;
-  background-color: royalblue;
+  background-color: var(--brand-color);
   padding: 10px;
   border-radius: 10px;
   color: #fff;
@@ -266,8 +294,8 @@ ul.form-errors li, ul.errorlist li {
   transform: .3s ease;
 }
 
-.submit:hover {
-  background-color: rgb(56, 90, 194);
+.kform .submit:hover {
+  background-color:var(--darkest-color);
   cursor: pointer;
 }
 

@@ -8,18 +8,14 @@
         <div class="profile-card mx-auto d-flex flex-column">
         <header>
           <div class="profile-card-avatar">
-            {% if user.profile.avatar %}
-                    <span class="user-img"><img class="rounded-circle" src="{{user.avatar.url }} "width="45" alt="profile_pic"></span>
+            {% if user.profile_pic %}
+                    <span class="user-img"><img class="rounded-circle" src="{{user.profile_pic.url }} "width="45" alt="profile_pic"></span>
                   {% else %}
                       <span class="user-img">{{ user|avatar }}</span> 
                   {% endif %} 
           </div>
         </header>
-        {% if request.user == user %}
-        <a href="#" class="update-avatar-icon">
-          <i class="fa-solid fa-camera-retro"></i>  
-        </a>
-        {% endif %}
+        
         <h3>{{user.pseudo}}</h3>
         <div class="infos flex-grow-1">
         <h6 class="darkest-color text-start">{% trans 'Informations' %}</h6>

@@ -1,25 +1,45 @@
+Général:
+  ☐ layout footer
+  ☐ delete image if object deleted
 
 Authentication:
   ☐ refaire toutes les traductions
   ☐ traduire messages send email
   ☐ ecrire une fonction js pour changer couleur input if error
   ☐ liens vers pages légales
+  ☐ verifier layout menu
 
 Verify email:
   ☐ request new link
 
+Header:
+  ☐ modifier hauteur profile pic
+
 Profile:
-  ✔ faire le layout @done(23-11-16 15:53)
-  ☐ changer le profil
-  ☐ ajouter photo profil
+  ☐ supprimer photo de profil
   ☐ choisir la couleur de l'avatar
   ☐ si pas de user = 404
+  ☐ nettoyer le css
+  ☐ supprimer compte
+  ☐ quand on passe de avatar à profile pic afficher profile pic dans le update
 
 Pages:
   ☐ prévoir page 404
 
+Messages:
+  ☐ pimper le modal avec icônes et couleurs
+
+Groupes:
+  ☐ créer logique groupe
 
 Archive:
+  ✔ faire apparaître le message de succès @done(23-11-20 15:18) @project(Profile)
+  ✔ changer les profile-pic @done(23-11-20 15:20) @project(Profile)
+  ✔ afficher l'img choisie dans l'avatar @done(23-11-20 15:20) @project(Profile)
+  ✔ faire le layout @done(23-11-16 15:53) @project(Profile)
+  ✔ changer le profil @done(23-11-17 16:40) @project(Profile)
+  ✔ ajouter photo profil @done(23-11-20 14:35) @project(Profile)
+  ✔ layout de la photo de profil @done(23-11-20 14:34) @project(Profile)
   ✔ ecrire une fonction js pour verifier en temps reel password validation @done(23-11-14 11:46) @project(Authentication)
   ✔ changer validation password @done(23-11-14 11:46) @project(Authentication)
   ✔ customize errors and help texts @done(23-11-14 11:35) @project(Change password)

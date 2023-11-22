@@ -65,8 +65,9 @@
       }
     </script>
 
+  {% if messages %}
   <!-- Show Popup message -->
-  {% if message %}
+  
     <script>
       var messageModal = new bootstrap.Modal(document.getElementById("notification-modal"));
       messageModal.show();

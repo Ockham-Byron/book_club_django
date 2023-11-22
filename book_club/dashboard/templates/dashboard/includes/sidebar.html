@@ -7,8 +7,8 @@
       <!-- User menu - Start -->
       <div class="dropdown py-sm-4  ms-auto ms-sm-0 flex-shrink-1 order-3 order-md-2">
           <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-              {% if request.user.profile.avatar %}
-                <span class="user-img"><img class="rounded-circle" src="{{ request.user.avatar.url }} "width="45" alt="profile_pic"></span>
+              {% if request.user.profile_pic %}
+                <span class="user-img"><img class="rounded-circle" src="{{ request.user.profile_pic.url }} "width="45" alt="profile_pic"></span>
               {% else %}
                   <span class="user-img">{{ request.user|avatar }}</span> 
               {% endif %} 

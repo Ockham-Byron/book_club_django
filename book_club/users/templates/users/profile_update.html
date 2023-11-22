@@ -50,7 +50,8 @@
 
       {% if request.user.profile_pic%}
       <a href="{% url 'profile-pic-delete' request.user.slug %}">{% trans 'Delete your profile picture' %}</a>
-
+      {% else %}
+      <a href="{% url 'change-avatar' request.user.slug %}">{% trans 'Or change your avatar color' %}</a>
       {% endif %}
 
 

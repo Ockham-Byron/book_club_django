@@ -6,6 +6,17 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
+AVATAR_CHOICES = (
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+        ('6', '6'),
+        ('7', '7'),
+        ('8', '8'),
+        ('9', '9'),
+    )
 
 
 class UserRegistrationForm(UserCreationForm):
@@ -111,3 +122,10 @@ class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email', 'profile_pic', 'bio', 'pseudo']
+
+class UserAvatarUpdateForm(forms.ModelForm):
+    
+    avatar = forms.ChoiceField(widget=forms.RadioSelect, choices = AVATAR_CHOICES)
+    class Meta:
+        model = User
+        fields = ['avatar']

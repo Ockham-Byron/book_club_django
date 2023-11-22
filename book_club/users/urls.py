@@ -32,6 +32,7 @@ urlpatterns = [
     #profile url
     path('profile/<slug:slug>', profile, name='profile'),
     path('profile/<slug:slug>/update', profile_update, name='profile-update'),
-    path('profile/<slug:slug>)/update/delete-profile-pic', delete_profile_pic, name='profile-pic-delete')
+    path('profile/<slug:slug>)/update/delete-profile-pic', delete_profile_pic, name='profile-pic-delete'),
+    path('profile/<slug:slug>/update/avatar-color', change_avatar, name='change-avatar')
     
 ] 

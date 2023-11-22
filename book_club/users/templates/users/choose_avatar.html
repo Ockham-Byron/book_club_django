@@ -1,0 +1,101 @@
+{% extends "dashboard/base.html" %}
+{% load avatar i18n %}
+{% block title %}{% trans 'Update Avatar' %}{% endblock title %}
+{% block content %}
+
+
+<!-- New Form -->
+<div class="d-flex align-items-center justify-content-center">
+  <form class="kform" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if user_form.errors %}
+      <div class="alert alert-danger alert-dismissible" role="alert">
+          <div id="form_errors">
+              {% for key, value in circle_form.errors.items %}
+              <strong>{{ value }}</strong>
+              {% endfor %}
+          </div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+    {% endif %}
+    <p class="title">{% trans 'Update Avatar' %}</p>
+    
+    
+      <div class="avatar-wrapper text-center mx-auto">
+      
+       
+          {{ request.user|avatar }}
+          
+</div>
+     
+
+
+<p>
+  An example demonstrating the use of the
+  <code>&lt;input type="color"&gt;</code> control.
+</p>
+
+<label for="color-picker">Color:</label>
+<input type="color" value="#ff0000" id="color-picker" />
+
+<p>
+  Watch the paragraph colors change when you adjust the color picker. As you
+  make changes in the color picker, the first paragraph's color changes, as a
+  preview (this uses the <code>input</code> event). When you close the color
+  picker, the <code>change</code> event fires, and we detect that to change
+  every paragraph to the selected color.
+</p>
+
+      
+      <button class="submit" type="submit ">{% trans 'Submit' %}</button>
+      <div class="text-center">
+        <a href="{% url 'profile' user.slug %}" class="mid-color">{% trans 'Cancel' %}</a>
+      </div>
+  </form>
+</div>
+{% endblock content %}
+
+{% block extrajs %}
+<script>
+let colorPicker;
+const defaultColor = "#0000ff";
+const avatar = document.getElementById("avatar");
+
+window.addEventListener("load", startup, false);
+
+function startup() {
+  colorPicker = document.querySelector("#color-picker");
+  colorPicker.value = defaultColor;
+  colorPicker.addEventListener("input", updateFirst, false);
+  colorPicker.addEventListener("change", updateAll, false);
+  colorPicker.select();
+}
+
+function updateFirst(event) {
+  const p = document.querySelector("p");
+  const avatar = document.getElementById("avatar");
+  console.log(avatar);
+  
+  if (avatar) {
+    p.style.color = event.target.value;
+    avatar.style.fill = event.target.value;
+  }
+ 
+}
+
+function updateAll(event) {
+  document.querySelectorAll("p").forEach((p) => {
+    p.style.color = event.target.value;
+  });
+  document.getElementById("avatar").forEach((avatar) => {
+    console.log(avatar)
+    avatar.style.fill = event.target.value;
+  });
+  
+  
+}
+</script>
+{% endblock %}
+

@@ -317,15 +317,12 @@ def profile(request, slug):
 @login_required
 def profile_update(request, slug):
     if request.method == 'POST':
-        print("request method post")
         form = UserUpdateForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
-            print("form ok")
             form.save()
             messages.success(request, _('Your profile has been successfully updated '))
             return redirect(to='profile', slug=slug)
         else:
-            print("Invalid form")
             for error in list(form.errors.values()):
                 print(request, error)
             
@@ -336,10 +333,24 @@ def profile_update(request, slug):
 
     return render(request, 'users/profile_update.html', {'form':form})
 
+@login_required
 def delete_profile_pic(request, slug):
     os.remove(request.user.profile_pic.path)
     request.user.profile_pic.delete()
     return redirect(to='profile', slug=slug)
-    
 
+@login_required
+def change_avatar(request, slug):
+    if request.method == 'POST':
+        form = UserAvatarUpdateForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(to='profile', slug=slug)
+        else:
+            for error in form.errors.values():
+                print(request, error)
 
+    else:
+        form= UserAvatarUpdateForm()
+
+    return render(request, 'users/choose_avatar.html', {'form':form})

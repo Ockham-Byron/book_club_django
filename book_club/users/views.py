@@ -342,15 +342,9 @@ def delete_profile_pic(request, slug):
 @login_required
 def change_avatar(request, slug):
     if request.method == 'POST':
-        form = UserAvatarUpdateForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect(to='profile', slug=slug)
-        else:
-            for error in form.errors.values():
-                print(request, error)
-
-    else:
-        form= UserAvatarUpdateForm()
-
-    return render(request, 'users/choose_avatar.html', {'form':form})
+        color = request.POST.get('avatar-color')
+        request.user.avatar_color = color
+        request.user.save()
+        return redirect(to='profile', slug=slug)
+        
+    return render(request, 'users/choose_avatar.html')

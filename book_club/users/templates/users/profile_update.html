@@ -39,6 +39,7 @@
       {% else %}
         <a href="#" id="fileSelect" class="avatar-upload">
           {{ request.user|avatar }}
+          <img id="add-image" class="avatar-upload d-none" src="" style="cursor: pointer;"/>
           <div class="avatar-overlay"><i class="fa fa-camera-retro icon"></i></div>
         </a>
       
@@ -48,11 +49,13 @@
         <p></p>
       </div>
 
-      {% if request.user.profile_pic%}
-      <a href="{% url 'profile-pic-delete' request.user.slug %}">{% trans 'Delete your profile picture' %}</a>
-      {% else %}
-      <a href="{% url 'change-avatar' request.user.slug %}">{% trans 'Or change your avatar color' %}</a>
-      {% endif %}
+      <div >
+        {% if request.user.profile_pic%}
+          <a href="{% url 'profile-pic-delete' request.user.slug %}" class="mid-color">{% trans 'Delete your profile picture ?' %}</a>
+        {% else %}
+          <a href="{% url 'change-avatar' request.user.slug %}" class="mid-color">{% trans 'Change your avatar color ?' %}</a>
+        {% endif %}
+      </div>
 
 
         <div class="d-flex mid-inputs justify-content-between">
@@ -102,7 +105,7 @@ function handleFiles() {
       const li = document.createElement("li");
       list.appendChild(li);
 
-      
+      //if updating a previous profile pic
       const img = document.getElementById("change-image");
       img.src = URL.createObjectURL(this.files[i]);
       img.height = 100;
@@ -110,6 +113,11 @@ function handleFiles() {
       img.className = "mx-auto avatar-upload rounded-circle";
       img.onload = () => {
         URL.revokeObjectURL(img.src);
+
+      //if add profile pic
+      const newImg = document.getElementById("add-image");
+      
+
       };
       
       

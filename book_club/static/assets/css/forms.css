@@ -33,6 +33,13 @@ input:focus::placeholder{
   color:var(--mid-color) !important;
 }
 
+input[type="color"] {
+  padding:0px!important;
+  width:100px !important;
+  height: 50px !important;
+  border:none !important;
+}
+
 
 
 /* || Login and Register */

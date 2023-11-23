@@ -123,9 +123,3 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = ['first_name', 'last_name', 'email', 'profile_pic', 'bio', 'pseudo']
 
-class UserAvatarUpdateForm(forms.ModelForm):
-    
-    avatar = forms.ChoiceField(widget=forms.RadioSelect, choices = AVATAR_CHOICES)
-    class Meta:
-        model = User
-        fields = ['avatar']

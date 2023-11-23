@@ -35,7 +35,7 @@ class CustomUser(AbstractUser):
     is_mail_visible = models.BooleanField(default=False)
     is_name_visible = models.BooleanField(default=False)
     pseudo = models.CharField(max_length=255, null=False, blank="False", default="Anonymous")
-    avatar = models.CharField(max_length=255, choices=AVATAR, blank=True, null=True)
+    avatar_color = models.CharField(max_length=255, default="#ec6a52", null=True)
     bio = models.CharField(max_length=500, null=True, blank="True")
 
     profile_pic = models.ImageField(blank=True, null=True, upload_to=path_and_rename)

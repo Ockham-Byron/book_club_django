@@ -424,23 +424,7 @@ color:var(--light-color) !important;
   height: 120px;
   background-color: var(--joy-color);
 }
-/* .profile-card header::before, .profile-card header::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: inherit;
-} */
-/* .profile-card header::before {
-  transform: skewY(-8deg);
-  transform-origin: 100% 100%;
-}
-.profile-card header::after {
-  transform: skewY(8deg);
-  transform-origin: 0 100%;
-} */
+
 
 .profile-card header::before{
   content: "";
@@ -496,6 +480,14 @@ color:var(--light-color) !important;
 .profile-card header .avatar .initial {
   font-size: 50px;
 }
+
+#change-avatar-wrapper .avatar {
+  width: 100px !important;
+  height: 100px !important;
+  border-radius: 50%;
+  font-size: 50px !important;
+}
+
 .profile-card h3 {
   position: relative;
   margin: 45px 0 30px;

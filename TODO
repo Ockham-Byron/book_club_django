@@ -17,8 +17,9 @@ Header:
   ☐ modifier hauteur profile pic
 
 Profile:
-  ☐ supprimer photo de profil
-  ☐ choisir la couleur de l'avatar
+  ✔ supprimer photo de profil @done(23-11-22 16:25)
+  ☐ verifier par module si ok pour supprimer photo de profil
+  ✔ choisir la couleur de l'avatar @done(23-11-22 16:20)
   ☐ si pas de user = 404
   ☐ nettoyer le css
   ☐ supprimer compte

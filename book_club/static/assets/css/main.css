@@ -57,7 +57,7 @@ body {
 
 /* || Typography */
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4 {
   font-family: 'OpenDyslexic';
 }
 
@@ -109,7 +109,11 @@ a, a:hover{
 }
   
 
+/* || Backgrounds colors */
 
+.bg-darkest{
+  background-color: var(--darkest-color);
+}
 /* || Header and Main Navigation */
 
 .site-header {
@@ -534,3 +538,9 @@ a.profile-card-edit{
 }
 
 
+/* || Footer */
+
+footer {
+  background-color: var(--joy-color);
+  
+}

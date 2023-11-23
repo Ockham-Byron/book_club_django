@@ -1,5 +1,5 @@
 Général:
-  ☐ layout footer
+  ✔ layout footer @done(23-11-23 11:30)
   ☐ delete image if object deleted
 
 Authentication:
@@ -9,6 +9,7 @@ Authentication:
   ☐ liens vers pages légales
   ☐ verifier layout menu
   ☐ add create at and update at
+  ☐ lien vers les mentions légales dans les formulaires de register
 
 Verify email:
   ☐ request new link

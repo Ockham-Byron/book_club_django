@@ -39,12 +39,13 @@
         <main class="row align-items-center h-100">
           {% block content %}{% endblock %}
         </main>
+        {% include 'users/includes/footer.html' %}
       </div>
     </div>
   </div>
         
   {% include 'users/includes/messages.html' %}
-  {% include 'users/includes/footer.html' %}
+  
 
        
 

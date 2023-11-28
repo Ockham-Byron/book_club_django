@@ -1,6 +1,11 @@
 Général:
-  ✔ layout footer @done(23-11-23 11:30)
   ☐ delete image if object deleted
+  ☐ verifier si j0ai mis des titres
+
+Legals:
+  ☐ page Terms
+  ☐ page Privacy Policy
+  ☐ urls
 
 Authentication:
   ☐ refaire toutes les traductions
@@ -18,13 +23,8 @@ Header:
   ☐ modifier hauteur profile pic
 
 Profile:
-  ✔ supprimer photo de profil @done(23-11-22 16:25)
-  ☐ verifier par module si ok pour supprimer photo de profil
-  ✔ choisir la couleur de l'avatar @done(23-11-22 16:20)
   ☐ si pas de user = 404
   ☐ nettoyer le css
-  ☐ supprimer compte
-  ☐ quand on passe de avatar à profile pic afficher profile pic dans le update
 
 Pages:
   ☐ prévoir page 404
@@ -33,9 +33,22 @@ Messages:
   ☐ pimper le modal avec icônes et couleurs
 
 Groupes:
+  ☐ créer modèle
+  ☐ créer add_group
   ☐ créer logique groupe
+  ☐ group pic : prévoir nom 
+  ☐ group pic : delete when delete model
+
+Notifications:
+  ☐ créer logique notifications
 
 Archive:
+  ✔ verifier par module si ok pour supprimer photo de profil @done(23-11-28 11:48) @project(Profile)
+  ✔ supprimer compte @done(23-11-28 11:48) @project(Profile)
+  ✔ layout footer @done(23-11-23 11:30) @project(Général)
+  ✔ supprimer photo de profil @done(23-11-22 16:25) @project(Profile)
+  ✔ choisir la couleur de l'avatar @done(23-11-22 16:20) @project(Profile)
+  ✔ quand on passe de avatar à profile pic afficher profile pic dans le update @done(23-11-23 12:20) @project(Profile)
   ✔ faire apparaître le message de succès @done(23-11-20 15:18) @project(Profile)
   ✔ changer les profile-pic @done(23-11-20 15:20) @project(Profile)
   ✔ afficher l'img choisie dans l'avatar @done(23-11-20 15:20) @project(Profile)

@@ -268,6 +268,22 @@ color:var(--light-color) !important;
   background-color: var(--brand-color);
 }
 
+.btn-outlined {
+  border:1px solid;
+}
+
+.outline-mid-color {
+  border-color:var(--mid-color);
+}
+
+.outline-mid-color:hover{
+  border-color:var(--darkest-color);
+}
+
+.btn-modal {
+  width:40%;
+}
+
 /* Edit buttons */
 
 .btn-edit {

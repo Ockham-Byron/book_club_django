@@ -1,0 +1,112 @@
+{% extends "dashboard/base.html" %}
+{% load i18n %}
+{% block title %}{% trans 'Create a circle' %}{% endblock title %}
+{% block content %}
+<div class="container" style="height:90vh;">
+  <div class="row h-100">
+  <div class="col-sm-12 my-auto">
+    <div class="abstract-form v-abstract-form">
+     {% if circle_form.errors %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <div id="form_errors">
+                {% for key, value in circle_form.errors.items %}
+                <strong>{{ value }}</strong>
+                {% endfor %}
+            </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endif %}
+    <h1 class="text-center">{% trans 'Create a Circle' %}</h1>
+    <div class="row justify-content-center">
+        
+       
+        <div class="form-content">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-row justify-content-center mt-5">
+                    
+                        <div class="form-group">
+                            
+                            {{ circle_form.name }}
+
+                        
+                        {% comment %} <div class="form-group mt-4 upload-wrapper">
+
+                            <button class="abstract-btn-upload" >{% trans 'Upload Picture of the Circle' %}</button>
+                            {{ circle_form.group_pic }}
+                        </div> {% endcomment %}
+                       <input
+  type="file"
+  id="fileElem"
+  multiple
+  accept="image/*"
+  name="group_pic"
+  style="display:none" 
+  />
+<a href="#" id="fileSelect" class="abstract-btn-upload">{% trans 'Upload Picture of the Circle' %}</a>
+<div id="fileList" class="mt-3 color-light">
+  <p>{% trans 'No files selected!' %}</p>
+</div>
+                        
+                    </div>
+                </div>
+              
+                <div class="row justify-content-center">
+                <button type="submit" class="btn btn-kdark btn-rounded">{% trans 'Save' %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extrajs %}
+<script>
+const fileSelect = document.getElementById("fileSelect"),
+  fileElem = document.getElementById("fileElem"),
+  fileList = document.getElementById("fileList");
+
+fileSelect.addEventListener(
+  "click",
+  (e) => {
+    if (fileElem) {
+      fileElem.click();
+    }
+    e.preventDefault(); // prevent navigation to "#"
+  },
+  false
+);
+
+fileElem.addEventListener("change", handleFiles, false);
+
+function handleFiles() {
+  if (!this.files.length) {
+    fileList.innerHTML = "<p>No files selected!'</p>";
+  } else {
+    fileList.innerHTML = "";
+    const list = document.createElement("ul");
+    fileList.appendChild(list);
+    for (let i = 0; i < this.files.length; i++) {
+      const li = document.createElement("li");
+      list.appendChild(li);
+
+      const img = document.createElement("img");
+      img.src = URL.createObjectURL(this.files[i]);
+      img.height = 60;
+      img.onload = () => {
+        URL.revokeObjectURL(img.src);
+      };
+      li.appendChild(img);
+      const info = document.createElement("span");
+      info.innerHTML = `${this.files[i].name}: ${this.files[i].size} bytes`;
+      li.appendChild(info);
+    }
+  }
+}
+</script>
+{% endblock extrajs%}

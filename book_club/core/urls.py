@@ -19,9 +19,16 @@ from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 
+
+
 urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),
     path('', include('users.urls')),
-    path('dashboard', include('dashboard.urls'))
+    path('dashboard/', include('dashboard.urls')),
+    path('groups/', include('groups.urls')),
+    path('pages/', include('pages.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+#handling 404 errors
+handler404 = 'pages.views.page_not_found_view'

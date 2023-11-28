@@ -118,7 +118,6 @@ def login_view(request):
                 )
                 if user is not None:
                     login(request, user)
-                    messages.success(request, "Login successful", extra_tags="Félicitations !!")
                     remember_me = login_form.cleaned_data.get('remember_me')
                     if not remember_me:
                         # set session expiry to 0 seconds. So it will automatically close the session after the browser is closed.
@@ -348,3 +347,10 @@ def change_avatar(request, slug):
         return redirect(to='profile', slug=slug)
         
     return render(request, 'users/choose_avatar.html')
+
+@login_required 
+def delete_account(request):
+    os.remove(request.user.profile_pic.path)
+    request.user.profile_pic.delete()
+    request.user.delete()
+    return redirect(to="bye")

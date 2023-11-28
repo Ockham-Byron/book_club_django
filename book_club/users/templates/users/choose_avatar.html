@@ -48,9 +48,11 @@ function startup() {
 
 function updateFirst(event) {
   
-  const avatar = document.getElementsByClassName("avatar")[1];
-  console.log(avatar);
-  avatar.style.fill = event.target.value;
+  const avatars = document.querySelectorAll(".avatar");
+  avatars.forEach(avatar => {
+    avatar.style.fill = event.target.value;
+  });
+  
   
   
  

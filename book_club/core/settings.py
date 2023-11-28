@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     #my_apps 
     'users',
     'dashboard',
+    'pages',
+    'groups',
 ]
 
 MIDDLEWARE = [
@@ -177,3 +179,5 @@ LOGIN_REDIRECT_URL = '/'
 
 #duration of the cookies to remember the user credentials
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 30
+
+
